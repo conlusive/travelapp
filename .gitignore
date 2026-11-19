@@ -1,0 +1,9 @@
+.idea/
+.venv/
+.env
+.env.*
+!.env.example
+node_modules/
+.next/
+.DS_Store
+__pycache__/
