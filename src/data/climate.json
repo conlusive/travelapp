@@ -1,0 +1,2162 @@
+{
+ "source": {
+  "name": "NASA POWER Daily API",
+  "url": "https://power.larc.nasa.gov/",
+  "version": "v2.10.5",
+  "accessedAt": "2026-11-26",
+  "firstYear": 2016,
+  "lastYear": 2025
+ },
+ "destinations": {
+  "lisbon": [
+   {
+    "month": 1,
+    "avgMaxC": 15.2,
+    "avgMinC": 11.6,
+    "precipitationMm": 56,
+    "rainDays": 9.4
+   },
+   {
+    "month": 2,
+    "avgMaxC": 15.6,
+    "avgMinC": 11.6,
+    "precipitationMm": 46,
+    "rainDays": 8
+   },
+   {
+    "month": 3,
+    "avgMaxC": 16,
+    "avgMinC": 12.1,
+    "precipitationMm": 72,
+    "rainDays": 11.1
+   },
+   {
+    "month": 4,
+    "avgMaxC": 17.5,
+    "avgMinC": 13.6,
+    "precipitationMm": 61,
+    "rainDays": 10.2
+   },
+   {
+    "month": 5,
+    "avgMaxC": 19.6,
+    "avgMinC": 15.1,
+    "precipitationMm": 29,
+    "rainDays": 5.3
+   },
+   {
+    "month": 6,
+    "avgMaxC": 21.1,
+    "avgMinC": 16.9,
+    "precipitationMm": 11,
+    "rainDays": 3.1
+   },
+   {
+    "month": 7,
+    "avgMaxC": 22.5,
+    "avgMinC": 17.8,
+    "precipitationMm": 3,
+    "rainDays": 0.5
+   },
+   {
+    "month": 8,
+    "avgMaxC": 23.1,
+    "avgMinC": 18.1,
+    "precipitationMm": 3,
+    "rainDays": 0.5
+   },
+   {
+    "month": 9,
+    "avgMaxC": 22.4,
+    "avgMinC": 17.8,
+    "precipitationMm": 23,
+    "rainDays": 4.2
+   },
+   {
+    "month": 10,
+    "avgMaxC": 21.1,
+    "avgMinC": 16.9,
+    "precipitationMm": 64,
+    "rainDays": 9.2
+   },
+   {
+    "month": 11,
+    "avgMaxC": 17.9,
+    "avgMinC": 14.4,
+    "precipitationMm": 83,
+    "rainDays": 12.4
+   },
+   {
+    "month": 12,
+    "avgMaxC": 16.1,
+    "avgMinC": 12.7,
+    "precipitationMm": 75,
+    "rainDays": 10.3
+   }
+  ],
+  "barcelona": [
+   {
+    "month": 1,
+    "avgMaxC": 13.2,
+    "avgMinC": 4.2,
+    "precipitationMm": 37,
+    "rainDays": 4.8
+   },
+   {
+    "month": 2,
+    "avgMaxC": 15.1,
+    "avgMinC": 5.7,
+    "precipitationMm": 29,
+    "rainDays": 5.2
+   },
+   {
+    "month": 3,
+    "avgMaxC": 16.6,
+    "avgMinC": 6.8,
+    "precipitationMm": 57,
+    "rainDays": 8.9
+   },
+   {
+    "month": 4,
+    "avgMaxC": 19.1,
+    "avgMinC": 9.2,
+    "precipitationMm": 61,
+    "rainDays": 8.5
+   },
+   {
+    "month": 5,
+    "avgMaxC": 23.1,
+    "avgMinC": 12.8,
+    "precipitationMm": 48,
+    "rainDays": 8.8
+   },
+   {
+    "month": 6,
+    "avgMaxC": 27.8,
+    "avgMinC": 17.8,
+    "precipitationMm": 38,
+    "rainDays": 7.2
+   },
+   {
+    "month": 7,
+    "avgMaxC": 31,
+    "avgMinC": 20.8,
+    "precipitationMm": 33,
+    "rainDays": 7.7
+   },
+   {
+    "month": 8,
+    "avgMaxC": 31,
+    "avgMinC": 21.2,
+    "precipitationMm": 41,
+    "rainDays": 8
+   },
+   {
+    "month": 9,
+    "avgMaxC": 26.6,
+    "avgMinC": 17.7,
+    "precipitationMm": 67,
+    "rainDays": 10.9
+   },
+   {
+    "month": 10,
+    "avgMaxC": 22.5,
+    "avgMinC": 14.1,
+    "precipitationMm": 77,
+    "rainDays": 9.1
+   },
+   {
+    "month": 11,
+    "avgMaxC": 17.1,
+    "avgMinC": 8.6,
+    "precipitationMm": 69,
+    "rainDays": 8.1
+   },
+   {
+    "month": 12,
+    "avgMaxC": 14.4,
+    "avgMinC": 6,
+    "precipitationMm": 43,
+    "rainDays": 5.2
+   }
+  ],
+  "rome": [
+   {
+    "month": 1,
+    "avgMaxC": 12,
+    "avgMinC": 3.9,
+    "precipitationMm": 64,
+    "rainDays": 10.7
+   },
+   {
+    "month": 2,
+    "avgMaxC": 14,
+    "avgMinC": 5.2,
+    "precipitationMm": 67,
+    "rainDays": 8.8
+   },
+   {
+    "month": 3,
+    "avgMaxC": 16,
+    "avgMinC": 6.2,
+    "precipitationMm": 64,
+    "rainDays": 10.2
+   },
+   {
+    "month": 4,
+    "avgMaxC": 19.6,
+    "avgMinC": 8.9,
+    "precipitationMm": 48,
+    "rainDays": 8.9
+   },
+   {
+    "month": 5,
+    "avgMaxC": 23.5,
+    "avgMinC": 13,
+    "precipitationMm": 55,
+    "rainDays": 11.7
+   },
+   {
+    "month": 6,
+    "avgMaxC": 29.8,
+    "avgMinC": 18.2,
+    "precipitationMm": 29,
+    "rainDays": 6
+   },
+   {
+    "month": 7,
+    "avgMaxC": 33.4,
+    "avgMinC": 21.3,
+    "precipitationMm": 20,
+    "rainDays": 3.4
+   },
+   {
+    "month": 8,
+    "avgMaxC": 33.4,
+    "avgMinC": 21.7,
+    "precipitationMm": 27,
+    "rainDays": 5.8
+   },
+   {
+    "month": 9,
+    "avgMaxC": 28.2,
+    "avgMinC": 17.6,
+    "precipitationMm": 71,
+    "rainDays": 8.9
+   },
+   {
+    "month": 10,
+    "avgMaxC": 23.3,
+    "avgMinC": 13.5,
+    "precipitationMm": 62,
+    "rainDays": 9.7
+   },
+   {
+    "month": 11,
+    "avgMaxC": 17.4,
+    "avgMinC": 9.2,
+    "precipitationMm": 119,
+    "rainDays": 14
+   },
+   {
+    "month": 12,
+    "avgMaxC": 13.6,
+    "avgMinC": 5.5,
+    "precipitationMm": 85,
+    "rainDays": 11.2
+   }
+  ],
+  "paris": [
+   {
+    "month": 1,
+    "avgMaxC": 6.6,
+    "avgMinC": 0.6,
+    "precipitationMm": 69,
+    "rainDays": 12.8
+   },
+   {
+    "month": 2,
+    "avgMaxC": 9.4,
+    "avgMinC": 1.6,
+    "precipitationMm": 50,
+    "rainDays": 10.4
+   },
+   {
+    "month": 3,
+    "avgMaxC": 12.6,
+    "avgMinC": 2.9,
+    "precipitationMm": 58,
+    "rainDays": 11.9
+   },
+   {
+    "month": 4,
+    "avgMaxC": 16,
+    "avgMinC": 4.9,
+    "precipitationMm": 41,
+    "rainDays": 8.6
+   },
+   {
+    "month": 5,
+    "avgMaxC": 19.5,
+    "avgMinC": 8.4,
+    "precipitationMm": 69,
+    "rainDays": 12.1
+   },
+   {
+    "month": 6,
+    "avgMaxC": 23.5,
+    "avgMinC": 12.5,
+    "precipitationMm": 70,
+    "rainDays": 11.9
+   },
+   {
+    "month": 7,
+    "avgMaxC": 25.3,
+    "avgMinC": 14,
+    "precipitationMm": 49,
+    "rainDays": 8.6
+   },
+   {
+    "month": 8,
+    "avgMaxC": 25.7,
+    "avgMinC": 14,
+    "precipitationMm": 42,
+    "rainDays": 8.2
+   },
+   {
+    "month": 9,
+    "avgMaxC": 22.3,
+    "avgMinC": 11.4,
+    "precipitationMm": 53,
+    "rainDays": 9.9
+   },
+   {
+    "month": 10,
+    "avgMaxC": 17.5,
+    "avgMinC": 8.3,
+    "precipitationMm": 67,
+    "rainDays": 12.7
+   },
+   {
+    "month": 11,
+    "avgMaxC": 11,
+    "avgMinC": 4.1,
+    "precipitationMm": 61,
+    "rainDays": 11.8
+   },
+   {
+    "month": 12,
+    "avgMaxC": 7.8,
+    "avgMinC": 2.3,
+    "precipitationMm": 69,
+    "rainDays": 13
+   }
+  ],
+  "prague": [
+   {
+    "month": 1,
+    "avgMaxC": 2.4,
+    "avgMinC": -3.5,
+    "precipitationMm": 39,
+    "rainDays": 12
+   },
+   {
+    "month": 2,
+    "avgMaxC": 5.3,
+    "avgMinC": -2.2,
+    "precipitationMm": 38,
+    "rainDays": 9.3
+   },
+   {
+    "month": 3,
+    "avgMaxC": 9.6,
+    "avgMinC": -0.1,
+    "precipitationMm": 35,
+    "rainDays": 8.9
+   },
+   {
+    "month": 4,
+    "avgMaxC": 14.2,
+    "avgMinC": 3.2,
+    "precipitationMm": 41,
+    "rainDays": 9.3
+   },
+   {
+    "month": 5,
+    "avgMaxC": 18.7,
+    "avgMinC": 7.6,
+    "precipitationMm": 66,
+    "rainDays": 13.6
+   },
+   {
+    "month": 6,
+    "avgMaxC": 24.5,
+    "avgMinC": 13.3,
+    "precipitationMm": 88,
+    "rainDays": 14.4
+   },
+   {
+    "month": 7,
+    "avgMaxC": 26,
+    "avgMinC": 14.5,
+    "precipitationMm": 74,
+    "rainDays": 14.7
+   },
+   {
+    "month": 8,
+    "avgMaxC": 26,
+    "avgMinC": 14.4,
+    "precipitationMm": 83,
+    "rainDays": 11.2
+   },
+   {
+    "month": 9,
+    "avgMaxC": 21.4,
+    "avgMinC": 10.2,
+    "precipitationMm": 63,
+    "rainDays": 9.4
+   },
+   {
+    "month": 10,
+    "avgMaxC": 15.4,
+    "avgMinC": 5.9,
+    "precipitationMm": 49,
+    "rainDays": 10.8
+   },
+   {
+    "month": 11,
+    "avgMaxC": 7.5,
+    "avgMinC": 0.8,
+    "precipitationMm": 42,
+    "rainDays": 9.2
+   },
+   {
+    "month": 12,
+    "avgMaxC": 3.4,
+    "avgMinC": -1.9,
+    "precipitationMm": 45,
+    "rainDays": 10.3
+   }
+  ],
+  "vienna": [
+   {
+    "month": 1,
+    "avgMaxC": 3.2,
+    "avgMinC": -3.2,
+    "precipitationMm": 37,
+    "rainDays": 11.2
+   },
+   {
+    "month": 2,
+    "avgMaxC": 6.7,
+    "avgMinC": -1.4,
+    "precipitationMm": 34,
+    "rainDays": 8.2
+   },
+   {
+    "month": 3,
+    "avgMaxC": 10.6,
+    "avgMinC": 0.5,
+    "precipitationMm": 36,
+    "rainDays": 7.7
+   },
+   {
+    "month": 4,
+    "avgMaxC": 15.2,
+    "avgMinC": 4.1,
+    "precipitationMm": 49,
+    "rainDays": 9.2
+   },
+   {
+    "month": 5,
+    "avgMaxC": 19.2,
+    "avgMinC": 8.6,
+    "precipitationMm": 92,
+    "rainDays": 16.5
+   },
+   {
+    "month": 6,
+    "avgMaxC": 25.3,
+    "avgMinC": 14.2,
+    "precipitationMm": 88,
+    "rainDays": 14.5
+   },
+   {
+    "month": 7,
+    "avgMaxC": 27,
+    "avgMinC": 15.7,
+    "precipitationMm": 83,
+    "rainDays": 15.5
+   },
+   {
+    "month": 8,
+    "avgMaxC": 27,
+    "avgMinC": 15.6,
+    "precipitationMm": 90,
+    "rainDays": 13.8
+   },
+   {
+    "month": 9,
+    "avgMaxC": 22,
+    "avgMinC": 11.2,
+    "precipitationMm": 88,
+    "rainDays": 9.8
+   },
+   {
+    "month": 10,
+    "avgMaxC": 16.4,
+    "avgMinC": 6.5,
+    "precipitationMm": 51,
+    "rainDays": 8.7
+   },
+   {
+    "month": 11,
+    "avgMaxC": 8.7,
+    "avgMinC": 1.4,
+    "precipitationMm": 48,
+    "rainDays": 8.8
+   },
+   {
+    "month": 12,
+    "avgMaxC": 4.2,
+    "avgMinC": -1.8,
+    "precipitationMm": 48,
+    "rainDays": 9.7
+   }
+  ],
+  "chania": [
+   {
+    "month": 1,
+    "avgMaxC": 13.8,
+    "avgMinC": 10.4,
+    "precipitationMm": 71,
+    "rainDays": 14.3
+   },
+   {
+    "month": 2,
+    "avgMaxC": 14.1,
+    "avgMinC": 10.4,
+    "precipitationMm": 42,
+    "rainDays": 8.3
+   },
+   {
+    "month": 3,
+    "avgMaxC": 15.6,
+    "avgMinC": 11.1,
+    "precipitationMm": 40,
+    "rainDays": 8.6
+   },
+   {
+    "month": 4,
+    "avgMaxC": 19,
+    "avgMinC": 13.4,
+    "precipitationMm": 21,
+    "rainDays": 4.1
+   },
+   {
+    "month": 5,
+    "avgMaxC": 22.8,
+    "avgMinC": 16.7,
+    "precipitationMm": 16,
+    "rainDays": 4.5
+   },
+   {
+    "month": 6,
+    "avgMaxC": 27.3,
+    "avgMinC": 21,
+    "precipitationMm": 6,
+    "rainDays": 1
+   },
+   {
+    "month": 7,
+    "avgMaxC": 29.8,
+    "avgMinC": 23.6,
+    "precipitationMm": 5,
+    "rainDays": 0.8
+   },
+   {
+    "month": 8,
+    "avgMaxC": 29.7,
+    "avgMinC": 24,
+    "precipitationMm": 7,
+    "rainDays": 1.1
+   },
+   {
+    "month": 9,
+    "avgMaxC": 27,
+    "avgMinC": 21.8,
+    "precipitationMm": 21,
+    "rainDays": 4.4
+   },
+   {
+    "month": 10,
+    "avgMaxC": 23.2,
+    "avgMinC": 18.6,
+    "precipitationMm": 37,
+    "rainDays": 8
+   },
+   {
+    "month": 11,
+    "avgMaxC": 19.5,
+    "avgMinC": 15.7,
+    "precipitationMm": 59,
+    "rainDays": 11
+   },
+   {
+    "month": 12,
+    "avgMaxC": 15.7,
+    "avgMinC": 12.4,
+    "precipitationMm": 66,
+    "rainDays": 12.8
+   }
+  ],
+  "dubrovnik": [
+   {
+    "month": 1,
+    "avgMaxC": 11.1,
+    "avgMinC": 8.3,
+    "precipitationMm": 137,
+    "rainDays": 13.7
+   },
+   {
+    "month": 2,
+    "avgMaxC": 12.4,
+    "avgMinC": 9.4,
+    "precipitationMm": 122,
+    "rainDays": 11.3
+   },
+   {
+    "month": 3,
+    "avgMaxC": 13.7,
+    "avgMinC": 10.4,
+    "precipitationMm": 128,
+    "rainDays": 12.6
+   },
+   {
+    "month": 4,
+    "avgMaxC": 16.3,
+    "avgMinC": 12.9,
+    "precipitationMm": 73,
+    "rainDays": 9.6
+   },
+   {
+    "month": 5,
+    "avgMaxC": 19.8,
+    "avgMinC": 16.6,
+    "precipitationMm": 93,
+    "rainDays": 11.9
+   },
+   {
+    "month": 6,
+    "avgMaxC": 25.1,
+    "avgMinC": 21.5,
+    "precipitationMm": 47,
+    "rainDays": 7.5
+   },
+   {
+    "month": 7,
+    "avgMaxC": 28.1,
+    "avgMinC": 24.1,
+    "precipitationMm": 32,
+    "rainDays": 4.9
+   },
+   {
+    "month": 8,
+    "avgMaxC": 28.7,
+    "avgMinC": 24.7,
+    "precipitationMm": 46,
+    "rainDays": 7.6
+   },
+   {
+    "month": 9,
+    "avgMaxC": 24.8,
+    "avgMinC": 21.1,
+    "precipitationMm": 112,
+    "rainDays": 10.4
+   },
+   {
+    "month": 10,
+    "avgMaxC": 20.6,
+    "avgMinC": 17.3,
+    "precipitationMm": 116,
+    "rainDays": 10.5
+   },
+   {
+    "month": 11,
+    "avgMaxC": 16.7,
+    "avgMinC": 13.9,
+    "precipitationMm": 208,
+    "rainDays": 14.4
+   },
+   {
+    "month": 12,
+    "avgMaxC": 13.2,
+    "avgMinC": 10.4,
+    "precipitationMm": 168,
+    "rainDays": 13
+   }
+  ],
+  "budva": [
+   {
+    "month": 1,
+    "avgMaxC": 7.4,
+    "avgMinC": 2.1,
+    "precipitationMm": 151,
+    "rainDays": 13.6
+   },
+   {
+    "month": 2,
+    "avgMaxC": 9.6,
+    "avgMinC": 3.9,
+    "precipitationMm": 130,
+    "rainDays": 10.6
+   },
+   {
+    "month": 3,
+    "avgMaxC": 11.8,
+    "avgMinC": 5.1,
+    "precipitationMm": 138,
+    "rainDays": 12.4
+   },
+   {
+    "month": 4,
+    "avgMaxC": 15.6,
+    "avgMinC": 8.1,
+    "precipitationMm": 80,
+    "rainDays": 9.7
+   },
+   {
+    "month": 5,
+    "avgMaxC": 19.4,
+    "avgMinC": 12.2,
+    "precipitationMm": 101,
+    "rainDays": 12.6
+   },
+   {
+    "month": 6,
+    "avgMaxC": 25.3,
+    "avgMinC": 17.3,
+    "precipitationMm": 54,
+    "rainDays": 8.5
+   },
+   {
+    "month": 7,
+    "avgMaxC": 29.4,
+    "avgMinC": 19.8,
+    "precipitationMm": 41,
+    "rainDays": 6
+   },
+   {
+    "month": 8,
+    "avgMaxC": 29.9,
+    "avgMinC": 20.1,
+    "precipitationMm": 53,
+    "rainDays": 7.8
+   },
+   {
+    "month": 9,
+    "avgMaxC": 24.4,
+    "avgMinC": 16,
+    "precipitationMm": 136,
+    "rainDays": 9.7
+   },
+   {
+    "month": 10,
+    "avgMaxC": 19.3,
+    "avgMinC": 11.7,
+    "precipitationMm": 122,
+    "rainDays": 10.5
+   },
+   {
+    "month": 11,
+    "avgMaxC": 13.9,
+    "avgMinC": 8.2,
+    "precipitationMm": 225,
+    "rainDays": 14.5
+   },
+   {
+    "month": 12,
+    "avgMaxC": 9.5,
+    "avgMinC": 4.4,
+    "precipitationMm": 186,
+    "rainDays": 13.5
+   }
+  ],
+  "reykjavik": [
+   {
+    "month": 1,
+    "avgMaxC": 1,
+    "avgMinC": -2.8,
+    "precipitationMm": 162,
+    "rainDays": 20
+   },
+   {
+    "month": 2,
+    "avgMaxC": 1.8,
+    "avgMinC": -1.9,
+    "precipitationMm": 158,
+    "rainDays": 19.1
+   },
+   {
+    "month": 3,
+    "avgMaxC": 2.5,
+    "avgMinC": -1.4,
+    "precipitationMm": 141,
+    "rainDays": 18.8
+   },
+   {
+    "month": 4,
+    "avgMaxC": 5.6,
+    "avgMinC": 1.2,
+    "precipitationMm": 115,
+    "rainDays": 17
+   },
+   {
+    "month": 5,
+    "avgMaxC": 8.4,
+    "avgMinC": 3.9,
+    "precipitationMm": 118,
+    "rainDays": 17.8
+   },
+   {
+    "month": 6,
+    "avgMaxC": 11.1,
+    "avgMinC": 6.4,
+    "precipitationMm": 95,
+    "rainDays": 17
+   },
+   {
+    "month": 7,
+    "avgMaxC": 13.4,
+    "avgMinC": 8.6,
+    "precipitationMm": 94,
+    "rainDays": 16.8
+   },
+   {
+    "month": 8,
+    "avgMaxC": 13,
+    "avgMinC": 8.3,
+    "precipitationMm": 115,
+    "rainDays": 16.1
+   },
+   {
+    "month": 9,
+    "avgMaxC": 10,
+    "avgMinC": 5.8,
+    "precipitationMm": 158,
+    "rainDays": 19.6
+   },
+   {
+    "month": 10,
+    "avgMaxC": 6.2,
+    "avgMinC": 2.9,
+    "precipitationMm": 151,
+    "rainDays": 20.3
+   },
+   {
+    "month": 11,
+    "avgMaxC": 3.2,
+    "avgMinC": 0.2,
+    "precipitationMm": 126,
+    "rainDays": 17.6
+   },
+   {
+    "month": 12,
+    "avgMaxC": 1.4,
+    "avgMinC": -1.8,
+    "precipitationMm": 141,
+    "rainDays": 19.1
+   }
+  ],
+  "bangkok": [
+   {
+    "month": 1,
+    "avgMaxC": 33.2,
+    "avgMinC": 20.7,
+    "precipitationMm": 17,
+    "rainDays": 3
+   },
+   {
+    "month": 2,
+    "avgMaxC": 35.8,
+    "avgMinC": 22.7,
+    "precipitationMm": 20,
+    "rainDays": 4
+   },
+   {
+    "month": 3,
+    "avgMaxC": 37.5,
+    "avgMinC": 25.4,
+    "precipitationMm": 34,
+    "rainDays": 6.9
+   },
+   {
+    "month": 4,
+    "avgMaxC": 37.3,
+    "avgMinC": 26.6,
+    "precipitationMm": 72,
+    "rainDays": 11.3
+   },
+   {
+    "month": 5,
+    "avgMaxC": 34.5,
+    "avgMinC": 26.5,
+    "precipitationMm": 187,
+    "rainDays": 22.9
+   },
+   {
+    "month": 6,
+    "avgMaxC": 32.6,
+    "avgMinC": 25.4,
+    "precipitationMm": 159,
+    "rainDays": 23.8
+   },
+   {
+    "month": 7,
+    "avgMaxC": 31.7,
+    "avgMinC": 24.7,
+    "precipitationMm": 214,
+    "rainDays": 27.2
+   },
+   {
+    "month": 8,
+    "avgMaxC": 31.7,
+    "avgMinC": 24.6,
+    "precipitationMm": 211,
+    "rainDays": 26.6
+   },
+   {
+    "month": 9,
+    "avgMaxC": 30.7,
+    "avgMinC": 24.7,
+    "precipitationMm": 310,
+    "rainDays": 28
+   },
+   {
+    "month": 10,
+    "avgMaxC": 30.6,
+    "avgMinC": 24.2,
+    "precipitationMm": 223,
+    "rainDays": 24.2
+   },
+   {
+    "month": 11,
+    "avgMaxC": 30.4,
+    "avgMinC": 22.3,
+    "precipitationMm": 50,
+    "rainDays": 9.8
+   },
+   {
+    "month": 12,
+    "avgMaxC": 30.5,
+    "avgMinC": 20,
+    "precipitationMm": 9,
+    "rainDays": 2
+   }
+  ],
+  "phuket": [
+   {
+    "month": 1,
+    "avgMaxC": 28.4,
+    "avgMinC": 26,
+    "precipitationMm": 104,
+    "rainDays": 14
+   },
+   {
+    "month": 2,
+    "avgMaxC": 29.1,
+    "avgMinC": 26.2,
+    "precipitationMm": 52,
+    "rainDays": 9
+   },
+   {
+    "month": 3,
+    "avgMaxC": 30.2,
+    "avgMinC": 27.2,
+    "precipitationMm": 71,
+    "rainDays": 12.4
+   },
+   {
+    "month": 4,
+    "avgMaxC": 30.1,
+    "avgMinC": 28.1,
+    "precipitationMm": 150,
+    "rainDays": 21.5
+   },
+   {
+    "month": 5,
+    "avgMaxC": 29.6,
+    "avgMinC": 28.3,
+    "precipitationMm": 318,
+    "rainDays": 30.1
+   },
+   {
+    "month": 6,
+    "avgMaxC": 29,
+    "avgMinC": 27.9,
+    "precipitationMm": 265,
+    "rainDays": 28.5
+   },
+   {
+    "month": 7,
+    "avgMaxC": 28.8,
+    "avgMinC": 27.7,
+    "precipitationMm": 283,
+    "rainDays": 28.4
+   },
+   {
+    "month": 8,
+    "avgMaxC": 28.6,
+    "avgMinC": 27.4,
+    "precipitationMm": 326,
+    "rainDays": 29.3
+   },
+   {
+    "month": 9,
+    "avgMaxC": 28.3,
+    "avgMinC": 27.1,
+    "precipitationMm": 360,
+    "rainDays": 28.7
+   },
+   {
+    "month": 10,
+    "avgMaxC": 28.2,
+    "avgMinC": 26.9,
+    "precipitationMm": 345,
+    "rainDays": 29.5
+   },
+   {
+    "month": 11,
+    "avgMaxC": 28.3,
+    "avgMinC": 26.9,
+    "precipitationMm": 308,
+    "rainDays": 27.9
+   },
+   {
+    "month": 12,
+    "avgMaxC": 28.3,
+    "avgMinC": 26.3,
+    "precipitationMm": 214,
+    "rainDays": 20.8
+   }
+  ],
+  "ubud": [
+   {
+    "month": 1,
+    "avgMaxC": 28.3,
+    "avgMinC": 24.1,
+    "precipitationMm": 317,
+    "rainDays": 28
+   },
+   {
+    "month": 2,
+    "avgMaxC": 28.1,
+    "avgMinC": 24.2,
+    "precipitationMm": 289,
+    "rainDays": 27
+   },
+   {
+    "month": 3,
+    "avgMaxC": 28.5,
+    "avgMinC": 24.4,
+    "precipitationMm": 230,
+    "rainDays": 26.8
+   },
+   {
+    "month": 4,
+    "avgMaxC": 28.6,
+    "avgMinC": 24.2,
+    "precipitationMm": 119,
+    "rainDays": 19.5
+   },
+   {
+    "month": 5,
+    "avgMaxC": 28.2,
+    "avgMinC": 23.8,
+    "precipitationMm": 71,
+    "rainDays": 12.6
+   },
+   {
+    "month": 6,
+    "avgMaxC": 27.4,
+    "avgMinC": 23.1,
+    "precipitationMm": 81,
+    "rainDays": 13.1
+   },
+   {
+    "month": 7,
+    "avgMaxC": 26.8,
+    "avgMinC": 22.2,
+    "precipitationMm": 52,
+    "rainDays": 8.1
+   },
+   {
+    "month": 8,
+    "avgMaxC": 27.4,
+    "avgMinC": 22,
+    "precipitationMm": 28,
+    "rainDays": 6.3
+   },
+   {
+    "month": 9,
+    "avgMaxC": 28.6,
+    "avgMinC": 22.6,
+    "precipitationMm": 59,
+    "rainDays": 7.8
+   },
+   {
+    "month": 10,
+    "avgMaxC": 29.7,
+    "avgMinC": 23.5,
+    "precipitationMm": 95,
+    "rainDays": 12.5
+   },
+   {
+    "month": 11,
+    "avgMaxC": 29.6,
+    "avgMinC": 24.2,
+    "precipitationMm": 204,
+    "rainDays": 21.8
+   },
+   {
+    "month": 12,
+    "avgMaxC": 28.8,
+    "avgMinC": 24.2,
+    "precipitationMm": 298,
+    "rainDays": 27.4
+   }
+  ],
+  "tokyo": [
+   {
+    "month": 1,
+    "avgMaxC": 9.7,
+    "avgMinC": 1.2,
+    "precipitationMm": 57,
+    "rainDays": 5.1
+   },
+   {
+    "month": 2,
+    "avgMaxC": 10.7,
+    "avgMinC": 1.7,
+    "precipitationMm": 56,
+    "rainDays": 6.2
+   },
+   {
+    "month": 3,
+    "avgMaxC": 14.5,
+    "avgMinC": 5.4,
+    "precipitationMm": 152,
+    "rainDays": 12.1
+   },
+   {
+    "month": 4,
+    "avgMaxC": 18.9,
+    "avgMinC": 9.9,
+    "precipitationMm": 149,
+    "rainDays": 12
+   },
+   {
+    "month": 5,
+    "avgMaxC": 23.1,
+    "avgMinC": 14.7,
+    "precipitationMm": 177,
+    "rainDays": 13.1
+   },
+   {
+    "month": 6,
+    "avgMaxC": 26.3,
+    "avgMinC": 18.9,
+    "precipitationMm": 219,
+    "rainDays": 16.1
+   },
+   {
+    "month": 7,
+    "avgMaxC": 30.2,
+    "avgMinC": 23.3,
+    "precipitationMm": 181,
+    "rainDays": 17.4
+   },
+   {
+    "month": 8,
+    "avgMaxC": 31.6,
+    "avgMinC": 24.7,
+    "precipitationMm": 167,
+    "rainDays": 17.2
+   },
+   {
+    "month": 9,
+    "avgMaxC": 28.3,
+    "avgMinC": 21.7,
+    "precipitationMm": 234,
+    "rainDays": 18
+   },
+   {
+    "month": 10,
+    "avgMaxC": 22.3,
+    "avgMinC": 15.2,
+    "precipitationMm": 235,
+    "rainDays": 15.5
+   },
+   {
+    "month": 11,
+    "avgMaxC": 17.3,
+    "avgMinC": 9.3,
+    "precipitationMm": 105,
+    "rainDays": 10.2
+   },
+   {
+    "month": 12,
+    "avgMaxC": 12.2,
+    "avgMinC": 3.7,
+    "precipitationMm": 62,
+    "rainDays": 6.6
+   }
+  ],
+  "hanoi": [
+   {
+    "month": 1,
+    "avgMaxC": 21.4,
+    "avgMinC": 12.1,
+    "precipitationMm": 48,
+    "rainDays": 5.9
+   },
+   {
+    "month": 2,
+    "avgMaxC": 23.4,
+    "avgMinC": 13.3,
+    "precipitationMm": 44,
+    "rainDays": 6.7
+   },
+   {
+    "month": 3,
+    "avgMaxC": 27.6,
+    "avgMinC": 17.5,
+    "precipitationMm": 55,
+    "rainDays": 10
+   },
+   {
+    "month": 4,
+    "avgMaxC": 30.5,
+    "avgMinC": 20.8,
+    "precipitationMm": 96,
+    "rainDays": 13.7
+   },
+   {
+    "month": 5,
+    "avgMaxC": 31.8,
+    "avgMinC": 23.8,
+    "precipitationMm": 179,
+    "rainDays": 20.4
+   },
+   {
+    "month": 6,
+    "avgMaxC": 32.6,
+    "avgMinC": 25.9,
+    "precipitationMm": 243,
+    "rainDays": 23.3
+   },
+   {
+    "month": 7,
+    "avgMaxC": 32.2,
+    "avgMinC": 25.7,
+    "precipitationMm": 307,
+    "rainDays": 25.1
+   },
+   {
+    "month": 8,
+    "avgMaxC": 31.5,
+    "avgMinC": 25.5,
+    "precipitationMm": 376,
+    "rainDays": 25.2
+   },
+   {
+    "month": 9,
+    "avgMaxC": 30.8,
+    "avgMinC": 24.2,
+    "precipitationMm": 286,
+    "rainDays": 21.3
+   },
+   {
+    "month": 10,
+    "avgMaxC": 27.6,
+    "avgMinC": 20.3,
+    "precipitationMm": 189,
+    "rainDays": 14.6
+   },
+   {
+    "month": 11,
+    "avgMaxC": 25.2,
+    "avgMinC": 16.6,
+    "precipitationMm": 37,
+    "rainDays": 7.1
+   },
+   {
+    "month": 12,
+    "avgMaxC": 21.3,
+    "avgMinC": 11.8,
+    "precipitationMm": 18,
+    "rainDays": 3.4
+   }
+  ],
+  "tbilisi": [
+   {
+    "month": 1,
+    "avgMaxC": 7.9,
+    "avgMinC": -1.9,
+    "precipitationMm": 14,
+    "rainDays": 4.6
+   },
+   {
+    "month": 2,
+    "avgMaxC": 10.1,
+    "avgMinC": -1.3,
+    "precipitationMm": 15,
+    "rainDays": 4.4
+   },
+   {
+    "month": 3,
+    "avgMaxC": 14.4,
+    "avgMinC": 1.9,
+    "precipitationMm": 43,
+    "rainDays": 8.7
+   },
+   {
+    "month": 4,
+    "avgMaxC": 20.6,
+    "avgMinC": 6.6,
+    "precipitationMm": 36,
+    "rainDays": 8.4
+   },
+   {
+    "month": 5,
+    "avgMaxC": 24.6,
+    "avgMinC": 11.3,
+    "precipitationMm": 71,
+    "rainDays": 14.4
+   },
+   {
+    "month": 6,
+    "avgMaxC": 29.9,
+    "avgMinC": 16.5,
+    "precipitationMm": 79,
+    "rainDays": 12
+   },
+   {
+    "month": 7,
+    "avgMaxC": 33.1,
+    "avgMinC": 19.3,
+    "precipitationMm": 34,
+    "rainDays": 8.8
+   },
+   {
+    "month": 8,
+    "avgMaxC": 33.2,
+    "avgMinC": 19.3,
+    "precipitationMm": 19,
+    "rainDays": 4.7
+   },
+   {
+    "month": 9,
+    "avgMaxC": 27.2,
+    "avgMinC": 14.6,
+    "precipitationMm": 33,
+    "rainDays": 7.2
+   },
+   {
+    "month": 10,
+    "avgMaxC": 20.6,
+    "avgMinC": 8.8,
+    "precipitationMm": 37,
+    "rainDays": 6.7
+   },
+   {
+    "month": 11,
+    "avgMaxC": 14.5,
+    "avgMinC": 3.7,
+    "precipitationMm": 23,
+    "rainDays": 4.8
+   },
+   {
+    "month": 12,
+    "avgMaxC": 9.1,
+    "avgMinC": -0.5,
+    "precipitationMm": 17,
+    "rainDays": 5.3
+   }
+  ],
+  "batumi": [
+   {
+    "month": 1,
+    "avgMaxC": 4,
+    "avgMinC": -2.9,
+    "precipitationMm": 131,
+    "rainDays": 15
+   },
+   {
+    "month": 2,
+    "avgMaxC": 5,
+    "avgMinC": -2,
+    "precipitationMm": 91,
+    "rainDays": 12.7
+   },
+   {
+    "month": 3,
+    "avgMaxC": 9,
+    "avgMinC": 1,
+    "precipitationMm": 92,
+    "rainDays": 14.3
+   },
+   {
+    "month": 4,
+    "avgMaxC": 14.6,
+    "avgMinC": 4.9,
+    "precipitationMm": 64,
+    "rainDays": 11.7
+   },
+   {
+    "month": 5,
+    "avgMaxC": 18.3,
+    "avgMinC": 9.1,
+    "precipitationMm": 79,
+    "rainDays": 14.1
+   },
+   {
+    "month": 6,
+    "avgMaxC": 22.9,
+    "avgMinC": 14.1,
+    "precipitationMm": 62,
+    "rainDays": 12.1
+   },
+   {
+    "month": 7,
+    "avgMaxC": 25.5,
+    "avgMinC": 16.4,
+    "precipitationMm": 65,
+    "rainDays": 12.3
+   },
+   {
+    "month": 8,
+    "avgMaxC": 27.5,
+    "avgMinC": 17.5,
+    "precipitationMm": 43,
+    "rainDays": 10.2
+   },
+   {
+    "month": 9,
+    "avgMaxC": 23.2,
+    "avgMinC": 14.1,
+    "precipitationMm": 112,
+    "rainDays": 14.3
+   },
+   {
+    "month": 10,
+    "avgMaxC": 17.9,
+    "avgMinC": 9.3,
+    "precipitationMm": 151,
+    "rainDays": 13.4
+   },
+   {
+    "month": 11,
+    "avgMaxC": 12.5,
+    "avgMinC": 4.4,
+    "precipitationMm": 107,
+    "rainDays": 10.9
+   },
+   {
+    "month": 12,
+    "avgMaxC": 6.9,
+    "avgMinC": 0.1,
+    "precipitationMm": 128,
+    "rainDays": 14
+   }
+  ],
+  "antalya": [
+   {
+    "month": 1,
+    "avgMaxC": 12.4,
+    "avgMinC": 4,
+    "precipitationMm": 151,
+    "rainDays": 13.5
+   },
+   {
+    "month": 2,
+    "avgMaxC": 13.9,
+    "avgMinC": 4.6,
+    "precipitationMm": 65,
+    "rainDays": 7.8
+   },
+   {
+    "month": 3,
+    "avgMaxC": 16.8,
+    "avgMinC": 6.4,
+    "precipitationMm": 66,
+    "rainDays": 8.5
+   },
+   {
+    "month": 4,
+    "avgMaxC": 21.5,
+    "avgMinC": 10.3,
+    "precipitationMm": 31,
+    "rainDays": 6.5
+   },
+   {
+    "month": 5,
+    "avgMaxC": 26,
+    "avgMinC": 14.6,
+    "precipitationMm": 45,
+    "rainDays": 8.8
+   },
+   {
+    "month": 6,
+    "avgMaxC": 31.6,
+    "avgMinC": 19.2,
+    "precipitationMm": 27,
+    "rainDays": 6.5
+   },
+   {
+    "month": 7,
+    "avgMaxC": 36.4,
+    "avgMinC": 22.8,
+    "precipitationMm": 7,
+    "rainDays": 1.8
+   },
+   {
+    "month": 8,
+    "avgMaxC": 36.4,
+    "avgMinC": 23.5,
+    "precipitationMm": 6,
+    "rainDays": 2.1
+   },
+   {
+    "month": 9,
+    "avgMaxC": 32.9,
+    "avgMinC": 19.9,
+    "precipitationMm": 13,
+    "rainDays": 3.5
+   },
+   {
+    "month": 10,
+    "avgMaxC": 27.1,
+    "avgMinC": 15,
+    "precipitationMm": 27,
+    "rainDays": 4.8
+   },
+   {
+    "month": 11,
+    "avgMaxC": 20.5,
+    "avgMinC": 10.2,
+    "precipitationMm": 78,
+    "rainDays": 8.5
+   },
+   {
+    "month": 12,
+    "avgMaxC": 14.6,
+    "avgMinC": 6.6,
+    "precipitationMm": 160,
+    "rainDays": 13
+   }
+  ],
+  "dubai": [
+   {
+    "month": 1,
+    "avgMaxC": 23.9,
+    "avgMinC": 18.4,
+    "precipitationMm": 24,
+    "rainDays": 2.7
+   },
+   {
+    "month": 2,
+    "avgMaxC": 24.7,
+    "avgMinC": 18.5,
+    "precipitationMm": 23,
+    "rainDays": 1.7
+   },
+   {
+    "month": 3,
+    "avgMaxC": 27.7,
+    "avgMinC": 20.5,
+    "precipitationMm": 25,
+    "rainDays": 3.1
+   },
+   {
+    "month": 4,
+    "avgMaxC": 31.4,
+    "avgMinC": 23.7,
+    "precipitationMm": 18,
+    "rainDays": 2.5
+   },
+   {
+    "month": 5,
+    "avgMaxC": 35.2,
+    "avgMinC": 26.9,
+    "precipitationMm": 10,
+    "rainDays": 0.9
+   },
+   {
+    "month": 6,
+    "avgMaxC": 38.5,
+    "avgMinC": 30,
+    "precipitationMm": 3,
+    "rainDays": 0.7
+   },
+   {
+    "month": 7,
+    "avgMaxC": 39.8,
+    "avgMinC": 32.2,
+    "precipitationMm": 4,
+    "rainDays": 0.5
+   },
+   {
+    "month": 8,
+    "avgMaxC": 40.2,
+    "avgMinC": 32.4,
+    "precipitationMm": 17,
+    "rainDays": 1.4
+   },
+   {
+    "month": 9,
+    "avgMaxC": 38.4,
+    "avgMinC": 30.7,
+    "precipitationMm": 1,
+    "rainDays": 0.1
+   },
+   {
+    "month": 10,
+    "avgMaxC": 34.9,
+    "avgMinC": 28.3,
+    "precipitationMm": 3,
+    "rainDays": 0.5
+   },
+   {
+    "month": 11,
+    "avgMaxC": 30.4,
+    "avgMinC": 24.6,
+    "precipitationMm": 7,
+    "rainDays": 1.4
+   },
+   {
+    "month": 12,
+    "avgMaxC": 26.3,
+    "avgMinC": 20.9,
+    "precipitationMm": 17,
+    "rainDays": 2
+   }
+  ],
+  "marrakesh": [
+   {
+    "month": 1,
+    "avgMaxC": 19,
+    "avgMinC": 5.8,
+    "precipitationMm": 21,
+    "rainDays": 3.4
+   },
+   {
+    "month": 2,
+    "avgMaxC": 20.6,
+    "avgMinC": 6.8,
+    "precipitationMm": 33,
+    "rainDays": 4.9
+   },
+   {
+    "month": 3,
+    "avgMaxC": 22.1,
+    "avgMinC": 8,
+    "precipitationMm": 48,
+    "rainDays": 7.6
+   },
+   {
+    "month": 4,
+    "avgMaxC": 25.4,
+    "avgMinC": 10.5,
+    "precipitationMm": 25,
+    "rainDays": 4.3
+   },
+   {
+    "month": 5,
+    "avgMaxC": 29.8,
+    "avgMinC": 13.6,
+    "precipitationMm": 13,
+    "rainDays": 2.8
+   },
+   {
+    "month": 6,
+    "avgMaxC": 33.3,
+    "avgMinC": 16.5,
+    "precipitationMm": 13,
+    "rainDays": 0.8
+   },
+   {
+    "month": 7,
+    "avgMaxC": 38.8,
+    "avgMinC": 21.2,
+    "precipitationMm": 10,
+    "rainDays": 0.6
+   },
+   {
+    "month": 8,
+    "avgMaxC": 38.8,
+    "avgMinC": 22.1,
+    "precipitationMm": 6,
+    "rainDays": 1.8
+   },
+   {
+    "month": 9,
+    "avgMaxC": 33.4,
+    "avgMinC": 18.3,
+    "precipitationMm": 14,
+    "rainDays": 2.2
+   },
+   {
+    "month": 10,
+    "avgMaxC": 29.2,
+    "avgMinC": 15.7,
+    "precipitationMm": 22,
+    "rainDays": 4.4
+   },
+   {
+    "month": 11,
+    "avgMaxC": 23.3,
+    "avgMinC": 10.8,
+    "precipitationMm": 30,
+    "rainDays": 4.9
+   },
+   {
+    "month": 12,
+    "avgMaxC": 19.5,
+    "avgMinC": 7.1,
+    "precipitationMm": 39,
+    "rainDays": 5.6
+   }
+  ],
+  "hurghada": [
+   {
+    "month": 1,
+    "avgMaxC": 21.3,
+    "avgMinC": 15.5,
+    "precipitationMm": 1,
+    "rainDays": 0.3
+   },
+   {
+    "month": 2,
+    "avgMaxC": 22,
+    "avgMinC": 15.8,
+    "precipitationMm": 2,
+    "rainDays": 0.5
+   },
+   {
+    "month": 3,
+    "avgMaxC": 24.7,
+    "avgMinC": 17.7,
+    "precipitationMm": 1,
+    "rainDays": 0.1
+   },
+   {
+    "month": 4,
+    "avgMaxC": 28.1,
+    "avgMinC": 20.4,
+    "precipitationMm": 0,
+    "rainDays": 0
+   },
+   {
+    "month": 5,
+    "avgMaxC": 31.5,
+    "avgMinC": 23.6,
+    "precipitationMm": 0,
+    "rainDays": 0.1
+   },
+   {
+    "month": 6,
+    "avgMaxC": 33.8,
+    "avgMinC": 26,
+    "precipitationMm": 0,
+    "rainDays": 0
+   },
+   {
+    "month": 7,
+    "avgMaxC": 34.9,
+    "avgMinC": 27.6,
+    "precipitationMm": 0,
+    "rainDays": 0
+   },
+   {
+    "month": 8,
+    "avgMaxC": 35.2,
+    "avgMinC": 28,
+    "precipitationMm": 0,
+    "rainDays": 0
+   },
+   {
+    "month": 9,
+    "avgMaxC": 33.6,
+    "avgMinC": 26.2,
+    "precipitationMm": 0,
+    "rainDays": 0.1
+   },
+   {
+    "month": 10,
+    "avgMaxC": 30.8,
+    "avgMinC": 24.1,
+    "precipitationMm": 3,
+    "rainDays": 0.2
+   },
+   {
+    "month": 11,
+    "avgMaxC": 27.1,
+    "avgMinC": 21.4,
+    "precipitationMm": 1,
+    "rainDays": 0.2
+   },
+   {
+    "month": 12,
+    "avgMaxC": 23.4,
+    "avgMinC": 17.9,
+    "precipitationMm": 0,
+    "rainDays": 0.1
+   }
+  ],
+  "sydney": [
+   {
+    "month": 1,
+    "avgMaxC": 25.8,
+    "avgMinC": 20.9,
+    "precipitationMm": 104,
+    "rainDays": 14.3
+   },
+   {
+    "month": 2,
+    "avgMaxC": 25.7,
+    "avgMinC": 21,
+    "precipitationMm": 115,
+    "rainDays": 12.2
+   },
+   {
+    "month": 3,
+    "avgMaxC": 24.6,
+    "avgMinC": 20.5,
+    "precipitationMm": 165,
+    "rainDays": 15.7
+   },
+   {
+    "month": 4,
+    "avgMaxC": 22.5,
+    "avgMinC": 18,
+    "precipitationMm": 56,
+    "rainDays": 7.7
+   },
+   {
+    "month": 5,
+    "avgMaxC": 19.9,
+    "avgMinC": 15.1,
+    "precipitationMm": 42,
+    "rainDays": 7.6
+   },
+   {
+    "month": 6,
+    "avgMaxC": 17.2,
+    "avgMinC": 12.8,
+    "precipitationMm": 52,
+    "rainDays": 7.3
+   },
+   {
+    "month": 7,
+    "avgMaxC": 17.1,
+    "avgMinC": 12.1,
+    "precipitationMm": 54,
+    "rainDays": 5.6
+   },
+   {
+    "month": 8,
+    "avgMaxC": 17.8,
+    "avgMinC": 12.3,
+    "precipitationMm": 47,
+    "rainDays": 6.5
+   },
+   {
+    "month": 9,
+    "avgMaxC": 20,
+    "avgMinC": 13.9,
+    "precipitationMm": 38,
+    "rainDays": 5.9
+   },
+   {
+    "month": 10,
+    "avgMaxC": 21.8,
+    "avgMinC": 15.9,
+    "precipitationMm": 67,
+    "rainDays": 9.7
+   },
+   {
+    "month": 11,
+    "avgMaxC": 23.1,
+    "avgMinC": 17.4,
+    "precipitationMm": 79,
+    "rainDays": 9.7
+   },
+   {
+    "month": 12,
+    "avgMaxC": 24.9,
+    "avgMinC": 19.2,
+    "precipitationMm": 68,
+    "rainDays": 10.6
+   }
+  ],
+  "new-york": [
+   {
+    "month": 1,
+    "avgMaxC": 4.3,
+    "avgMinC": -0.6,
+    "precipitationMm": 129,
+    "rainDays": 10.2
+   },
+   {
+    "month": 2,
+    "avgMaxC": 5.2,
+    "avgMinC": 0,
+    "precipitationMm": 115,
+    "rainDays": 11
+   },
+   {
+    "month": 3,
+    "avgMaxC": 7.8,
+    "avgMinC": 2.3,
+    "precipitationMm": 138,
+    "rainDays": 11.2
+   },
+   {
+    "month": 4,
+    "avgMaxC": 12.2,
+    "avgMinC": 6.5,
+    "precipitationMm": 122,
+    "rainDays": 12
+   },
+   {
+    "month": 5,
+    "avgMaxC": 17,
+    "avgMinC": 11.7,
+    "precipitationMm": 131,
+    "rainDays": 13.3
+   },
+   {
+    "month": 6,
+    "avgMaxC": 22.5,
+    "avgMinC": 17.4,
+    "precipitationMm": 75,
+    "rainDays": 11.9
+   },
+   {
+    "month": 7,
+    "avgMaxC": 26.6,
+    "avgMinC": 22,
+    "precipitationMm": 160,
+    "rainDays": 17.8
+   },
+   {
+    "month": 8,
+    "avgMaxC": 26.2,
+    "avgMinC": 21.5,
+    "precipitationMm": 110,
+    "rainDays": 15.3
+   },
+   {
+    "month": 9,
+    "avgMaxC": 23.4,
+    "avgMinC": 18.4,
+    "precipitationMm": 116,
+    "rainDays": 10.3
+   },
+   {
+    "month": 10,
+    "avgMaxC": 18.5,
+    "avgMinC": 13.1,
+    "precipitationMm": 131,
+    "rainDays": 9.8
+   },
+   {
+    "month": 11,
+    "avgMaxC": 12.2,
+    "avgMinC": 6.4,
+    "precipitationMm": 114,
+    "rainDays": 8.2
+   },
+   {
+    "month": 12,
+    "avgMaxC": 6.7,
+    "avgMinC": 2,
+    "precipitationMm": 149,
+    "rainDays": 10.2
+   }
+  ],
+  "cancun": [
+   {
+    "month": 1,
+    "avgMaxC": 26.7,
+    "avgMinC": 22.6,
+    "precipitationMm": 103,
+    "rainDays": 13
+   },
+   {
+    "month": 2,
+    "avgMaxC": 27.5,
+    "avgMinC": 23,
+    "precipitationMm": 50,
+    "rainDays": 7.7
+   },
+   {
+    "month": 3,
+    "avgMaxC": 28.9,
+    "avgMinC": 23.8,
+    "precipitationMm": 44,
+    "rainDays": 6
+   },
+   {
+    "month": 4,
+    "avgMaxC": 30.1,
+    "avgMinC": 24.8,
+    "precipitationMm": 42,
+    "rainDays": 5.9
+   },
+   {
+    "month": 5,
+    "avgMaxC": 31,
+    "avgMinC": 26.1,
+    "precipitationMm": 83,
+    "rainDays": 10.8
+   },
+   {
+    "month": 6,
+    "avgMaxC": 30.2,
+    "avgMinC": 26.7,
+    "precipitationMm": 202,
+    "rainDays": 17.7
+   },
+   {
+    "month": 7,
+    "avgMaxC": 30.7,
+    "avgMinC": 27,
+    "precipitationMm": 84,
+    "rainDays": 16.7
+   },
+   {
+    "month": 8,
+    "avgMaxC": 30.8,
+    "avgMinC": 27.1,
+    "precipitationMm": 130,
+    "rainDays": 21.3
+   },
+   {
+    "month": 9,
+    "avgMaxC": 30.3,
+    "avgMinC": 26.9,
+    "precipitationMm": 150,
+    "rainDays": 22.8
+   },
+   {
+    "month": 10,
+    "avgMaxC": 29.6,
+    "avgMinC": 26.1,
+    "precipitationMm": 202,
+    "rainDays": 22.3
+   },
+   {
+    "month": 11,
+    "avgMaxC": 28.2,
+    "avgMinC": 24.5,
+    "precipitationMm": 135,
+    "rainDays": 16.1
+   },
+   {
+    "month": 12,
+    "avgMaxC": 27.4,
+    "avgMinC": 23.6,
+    "precipitationMm": 90,
+    "rainDays": 13.4
+   }
+  ],
+  "rio-de-janeiro": [
+   {
+    "month": 1,
+    "avgMaxC": 28.5,
+    "avgMinC": 23.8,
+    "precipitationMm": 262,
+    "rainDays": 22.1
+   },
+   {
+    "month": 2,
+    "avgMaxC": 28.5,
+    "avgMinC": 23.8,
+    "precipitationMm": 233,
+    "rainDays": 19.8
+   },
+   {
+    "month": 3,
+    "avgMaxC": 28,
+    "avgMinC": 23.6,
+    "precipitationMm": 188,
+    "rainDays": 18.5
+   },
+   {
+    "month": 4,
+    "avgMaxC": 26.6,
+    "avgMinC": 22.2,
+    "precipitationMm": 118,
+    "rainDays": 12.5
+   },
+   {
+    "month": 5,
+    "avgMaxC": 25.3,
+    "avgMinC": 20.4,
+    "precipitationMm": 62,
+    "rainDays": 7.5
+   },
+   {
+    "month": 6,
+    "avgMaxC": 24.7,
+    "avgMinC": 19.1,
+    "precipitationMm": 45,
+    "rainDays": 7.3
+   },
+   {
+    "month": 7,
+    "avgMaxC": 24.4,
+    "avgMinC": 18.3,
+    "precipitationMm": 21,
+    "rainDays": 3.9
+   },
+   {
+    "month": 8,
+    "avgMaxC": 25,
+    "avgMinC": 18.4,
+    "precipitationMm": 54,
+    "rainDays": 7.5
+   },
+   {
+    "month": 9,
+    "avgMaxC": 26.6,
+    "avgMinC": 19.7,
+    "precipitationMm": 61,
+    "rainDays": 8
+   },
+   {
+    "month": 10,
+    "avgMaxC": 26.5,
+    "avgMinC": 20.6,
+    "precipitationMm": 144,
+    "rainDays": 17.6
+   },
+   {
+    "month": 11,
+    "avgMaxC": 26.3,
+    "avgMinC": 21,
+    "precipitationMm": 228,
+    "rainDays": 18.7
+   },
+   {
+    "month": 12,
+    "avgMaxC": 27.7,
+    "avgMinC": 22.6,
+    "precipitationMm": 272,
+    "rainDays": 21
+   }
+  ]
+ }
+}

@@ -14,6 +14,8 @@ export type Destination = {
   type: DestinationType;
   lat: number;
   lng: number;
+  /** Кліматичні дані помітно розходяться з еталоном (docs/phase-1/climate-accuracy.md). */
+  climateCaveat?: boolean;
 };
 
 /** Багаторічні середні за один календарний місяць. */
