@@ -11,6 +11,8 @@ export type Destination = {
   slug: string;
   countrySlug: string;
   name: string;
+  /** Назва англійською для пошукових посилань. */
+  searchName: string;
   type: DestinationType;
   lat: number;
   lng: number;
