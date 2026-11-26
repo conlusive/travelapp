@@ -2,11 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClimateAttribution } from "@/components/ClimateAttribution";
+import { ReportForm } from "@/components/ReportForm";
 import { VerdictLegend } from "@/components/VerdictLegend";
+import { FactList, Section } from "@/components/ui";
 import { VERDICT_BACKGROUND } from "@/components/verdict-styles";
-import { getCountry, getSeason, listCountries, listDestinations } from "@/data/catalog";
+import {
+  getCountry,
+  getEntryRules,
+  getSeason,
+  listCountries,
+  listDestinations,
+} from "@/data/catalog";
 import { MONTH_NAMES, monthName } from "@/domain/months";
 import { VERDICT_LABELS } from "@/domain/season";
+import { formatMonthYear } from "@/lib/format";
 
 // Усі напрямки відомі на збірці; інші адреси отримують справжній 404.
 export const dynamicParams = false;
@@ -28,6 +37,7 @@ export default async function CountryPage({ params }: PageProps<"/[country]">) {
   const country = getCountry((await params).country);
   if (!country) notFound();
   const destinations = listDestinations(country.slug);
+  const entryRules = getEntryRules(country.slug);
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-10 px-4 py-10 sm:px-6">
@@ -79,10 +89,15 @@ export default async function CountryPage({ params }: PageProps<"/[country]">) {
                     <td
                       key={item.climate.month}
                       title={`${monthName(item.climate.month).full}: ${VERDICT_LABELS[item.verdict]}`}
-                      className={`h-8 rounded-md text-center font-medium text-on-verdict ${VERDICT_BACKGROUND[item.verdict]}`}
+                      className={`rounded-md text-center font-medium text-on-verdict ${VERDICT_BACKGROUND[item.verdict]}`}
                     >
-                      {item.score}
-                      <span className="sr-only"> {VERDICT_LABELS[item.verdict]}</span>
+                      <Link
+                        href={`/${country.slug}/${destination.slug}?month=${item.climate.month}`}
+                        aria-label={`${destination.name}, ${monthName(item.climate.month).full}: ${VERDICT_LABELS[item.verdict]}`}
+                        className="flex min-h-9 items-center justify-center"
+                      >
+                        {item.score}
+                      </Link>
                     </td>
                   ))}
                 </tr>
@@ -97,6 +112,18 @@ export default async function CountryPage({ params }: PageProps<"/[country]">) {
             " Для напрямків із зірочкою кліматичні дані можуть помітно відрізнятися від реальних."}
         </p>
       </section>
+
+      {entryRules && (
+        <Section id="visa" title="Візи й вʼїзд для українців">
+          <FactList facts={entryRules.facts} />
+          <p className="text-sm text-muted">
+            Для біометричного паспорта й короткої туристичної поїздки. Перевірено:{" "}
+            {formatMonthYear(entryRules.verifiedAt)}.
+          </p>
+        </Section>
+      )}
+
+      <ReportForm />
 
       <footer className="border-t border-border pt-6">
         <ClimateAttribution />

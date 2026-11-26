@@ -92,7 +92,7 @@ export function SubscribeForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="min-h-12 rounded-xl bg-accent px-6 text-base font-semibold text-white transition hover:bg-accent-strong disabled:opacity-60"
+          className="min-h-12 rounded-xl bg-accent px-6 text-base font-semibold text-on-accent transition hover:bg-accent-strong disabled:opacity-60"
         >
           {status === "loading" ? "Надсилаємо…" : "Хочу ранній доступ"}
         </button>

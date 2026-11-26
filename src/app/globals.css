@@ -14,6 +14,7 @@
   --verdict-meh: #f0c36a;
   --verdict-avoid: #e08a82;
   --on-verdict: #14181a;
+  --on-accent: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,6 +31,7 @@
     --verdict-good: #7fbd8f;
     --verdict-meh: #d3a545;
     --verdict-avoid: #d4766d;
+    --on-accent: #08211e;
   }
 }
 
@@ -47,6 +49,7 @@
   --color-verdict-meh: var(--verdict-meh);
   --color-verdict-avoid: var(--verdict-avoid);
   --color-on-verdict: var(--on-verdict);
+  --color-on-accent: var(--on-accent);
   --font-sans: var(--font-inter);
 }
 
@@ -54,4 +57,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }

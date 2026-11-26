@@ -1,15 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import type { MonthSeason } from "@/data/catalog";
 import { monthName } from "@/domain/months";
 import { VERDICT_LABELS } from "@/domain/season";
+import { parseMonth } from "@/lib/destination-filter";
+import { replaceSearchParams } from "@/lib/url-state";
 import { VerdictLegend } from "./VerdictLegend";
 import { VERDICT_BACKGROUND } from "./verdict-styles";
 
-type Props = {
+type ViewProps = {
   season: MonthSeason[];
-  initialMonth: number;
+  selected: number;
+  /** Відсутній у статичному варіанті до гідратації. */
+  onSelect?: (month: number) => void;
 };
 
 function formatTemperature(value: number): string {
@@ -17,8 +21,7 @@ function formatTemperature(value: number): string {
   return `${rounded > 0 ? "+" : ""}${rounded} °C`;
 }
 
-export function SeasonCalendar({ season, initialMonth }: Props) {
-  const [selected, setSelected] = useState(initialMonth);
+export function SeasonCalendarView({ season, selected, onSelect }: ViewProps) {
   const current = season.find((item) => item.climate.month === selected) ?? season[0];
   const { climate } = current;
 
@@ -40,7 +43,7 @@ export function SeasonCalendar({ season, initialMonth }: Props) {
               <li key={month}>
                 <button
                   type="button"
-                  onClick={() => setSelected(month)}
+                  onClick={() => onSelect?.(month)}
                   aria-pressed={isSelected}
                   aria-label={`${monthName(month).full}: ${VERDICT_LABELS[item.verdict]}`}
                   className="flex w-full cursor-pointer flex-col items-center gap-1.5 rounded-lg focus-visible:outline-2 focus-visible:outline-accent"
@@ -87,5 +90,24 @@ export function SeasonCalendar({ season, initialMonth }: Props) {
         </dl>
       </section>
     </div>
+  );
+}
+
+/** Обраний місяць зберігається в адресі: «Лісабон у квітні» — це посилання. */
+export function SeasonCalendar({
+  season,
+  initialMonth,
+}: {
+  season: MonthSeason[];
+  initialMonth: number;
+}) {
+  const params = useSearchParams();
+
+  return (
+    <SeasonCalendarView
+      season={season}
+      selected={parseMonth(params.get("month")) ?? initialMonth}
+      onSelect={(month) => replaceSearchParams({ month })}
+    />
   );
 }
