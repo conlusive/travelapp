@@ -1,3 +1,4 @@
+import { readGuardedJson } from "@/lib/api-guard";
 import { normalizeEmail, normalizeSource } from "@/lib/email";
 import { createRateLimiter } from "@/lib/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase-server";
@@ -5,42 +6,11 @@ import { getSupabaseAdmin } from "@/lib/supabase-server";
 const MAX_BODY_BYTES = 2048;
 const checkRateLimit = createRateLimiter(5, 60_000);
 
-function clientIp(request: Request): string {
-  // Перший елемент — клієнт; платформа (Vercel) дописує свої значення в кінець.
-  return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-}
-
 export async function POST(request: Request) {
-  const limit = checkRateLimit(clientIp(request));
-  if (!limit.allowed) {
-    return Response.json(
-      { error: "rate_limited" },
-      { status: 429, headers: { "Retry-After": String(limit.retryAfterSeconds) } },
-    );
-  }
+  const guard = await readGuardedJson(request, checkRateLimit, MAX_BODY_BYTES);
+  if (!guard.ok) return guard.response;
 
-  const declaredLength = Number(request.headers.get("content-length") ?? 0);
-  if (declaredLength > MAX_BODY_BYTES) {
-    return Response.json({ error: "payload_too_large" }, { status: 413 });
-  }
-
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return Response.json({ error: "invalid_json" }, { status: 400 });
-  }
-  if (typeof body !== "object" || body === null) {
-    return Response.json({ error: "invalid_json" }, { status: 400 });
-  }
-  const { email, source, website } = body as Record<string, unknown>;
-
-  // Honeypot: людина це поле не бачить. Бот отримує «успіх», але нічого не зберігається.
-  if (typeof website === "string" && website.length > 0) {
-    return Response.json({ ok: true });
-  }
-
-  const normalized = normalizeEmail(email);
+  const normalized = normalizeEmail(guard.body.email);
   if (!normalized) {
     return Response.json({ error: "invalid_email" }, { status: 400 });
   }
@@ -55,7 +25,7 @@ export async function POST(request: Request) {
   const { error } = await supabase
     .from("waitlist_subscribers")
     .upsert(
-      { email: normalized, source: normalizeSource(source) },
+      { email: normalized, source: normalizeSource(guard.body.source) },
       { onConflict: "email", ignoreDuplicates: true },
     );
 

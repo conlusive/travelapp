@@ -44,7 +44,7 @@ async function publicTables(): Promise<{ name: string; rls: boolean }[]> {
 describe("access control", () => {
   it("enables RLS on every public table", async () => {
     const tables = await publicTables();
-    expect(tables).toHaveLength(10);
+    expect(tables).toHaveLength(11);
     expect(tables.filter((table) => !table.rls)).toEqual([]);
   });
 
@@ -87,6 +87,23 @@ describe("waitlist constraints", () => {
     ],
   ])("rejects %s", async (_label, sql) => {
     await expect(db.query(sql)).rejects.toThrow(/violates check constraint/);
+  });
+});
+
+describe("inaccuracy report constraints", () => {
+  const insert = "insert into inaccuracy_reports (path, message) values ($1, $2)";
+
+  it("accepts the same limits the API enforces", async () => {
+    await db.query(insert, ["/", "я".repeat(10)]);
+    await db.query(insert, ["/portugal/lisbon", "я".repeat(1000)]);
+  });
+
+  it.each([
+    ["a short message", "/", "я".repeat(9)],
+    ["a long message", "/", "я".repeat(1001)],
+    ["an external path", "https://e.com", "я".repeat(20)],
+  ])("rejects %s", async (_label, path, message) => {
+    await expect(db.query(insert, [path, message])).rejects.toThrow(/violates check constraint/);
   });
 });
 
