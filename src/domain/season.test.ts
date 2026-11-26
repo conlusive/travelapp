@@ -1,5 +1,22 @@
 import { describe, expect, it } from "vitest";
-import { assessSeason, verdictFor, weatherScore } from "./season";
+import { assessSeason, bestMonths, verdictFor, weatherScore } from "./season";
+
+describe("bestMonths", () => {
+  const season = (scores: number[]) =>
+    scores.map((score, i) => ({ score, verdict: verdictFor(score), climate: { month: i + 1 } }));
+
+  it("picks the highest scores and returns them in calendar order", () => {
+    expect(bestMonths(season([60, 90, 80, 100, 70]))).toEqual([2, 3, 4]);
+  });
+
+  it("prefers earlier months on equal scores", () => {
+    expect(bestMonths(season([90, 90, 90, 90]), 2)).toEqual([1, 2]);
+  });
+
+  it("returns nothing when no month is at least good", () => {
+    expect(bestMonths(season([54, 40, 10]))).toEqual([]);
+  });
+});
 
 describe("weatherScore", () => {
   it("gives 100 for comfortable and dry months, including both range edges", () => {

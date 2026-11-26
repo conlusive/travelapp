@@ -61,6 +61,19 @@ export function verdictFor(score: number): Verdict {
   return "avoid";
 }
 
+/** Місяці (1–12) з найвищою оцінкою, у календарному порядку; не більше `limit`. */
+export function bestMonths(
+  season: { score: number; verdict: Verdict; climate: { month: number } }[],
+  limit = 3,
+): number[] {
+  return season
+    .filter(({ verdict }) => verdict === "ideal" || verdict === "good")
+    .toSorted((a, b) => b.score - a.score || a.climate.month - b.climate.month)
+    .slice(0, limit)
+    .map(({ climate }) => climate.month)
+    .toSorted((a, b) => a - b);
+}
+
 export function assessSeason(inputs: SeasonInputs): SeasonAssessment {
   let total = 0;
   let weightSum = 0;
