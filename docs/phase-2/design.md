@@ -17,6 +17,7 @@
 ## Фото й карта
 - Фото: Wikimedia Commons, список у `src/data/photo-sources.json`; `npm run fetch:photos` стискає їх у `public/photos` і записує авторів. Приймаються лише CC0, Public domain, CC BY, CC BY-SA. Автори показані біля великих фото й на `/credits`.
 - Карта: Natural Earth (`world-atlas`), `npm run build:map` → `public/map/world.json` (≈140 КБ gzip). Проєкція в `src/lib/map-projection.ts`.
+- **Крим:** вихідні дані малюють його у складі Росії; `src/lib/map-corrections.ts` повертає його Україні під час побудови карти. Тест `map-corrections.test.ts` перевіряє і виправлення, і готовий файл. Після оновлення `world-atlas` обовʼязково запускати `npm test`.
 
 ## Не перевірено
 Макет не показували людям (крок 2.3 плану: 3+ людини мають зрозуміти без пояснень).

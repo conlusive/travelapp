@@ -7,6 +7,7 @@ import { feature } from "topojson-client";
 import { presimplify, quantile, simplify } from "topojson-simplify";
 import type { Topology } from "topojson-specification";
 import { COUNTRIES } from "../src/data/destinations.ts";
+import { restoreCrimea } from "../src/lib/map-corrections.ts";
 import { mapProjection } from "../src/lib/map-projection.ts";
 
 const SOURCE = new URL("../node_modules/world-atlas/countries-50m.json", import.meta.url);
@@ -18,7 +19,8 @@ const ANTARCTICA = "010";
 
 type SimplifyInput = Parameters<typeof presimplify>[0];
 
-const topology = presimplify(JSON.parse(await readFile(SOURCE, "utf8")) as SimplifyInput);
+const source = restoreCrimea(JSON.parse(await readFile(SOURCE, "utf8")) as Topology);
+const topology = presimplify(source as SimplifyInput);
 const simplified = simplify(topology, quantile(topology, SIMPLIFY_QUANTILE)) as Topology;
 const collection = feature(simplified, simplified.objects.countries);
 if (collection.type !== "FeatureCollection") throw new Error("Unexpected world-atlas shape");
