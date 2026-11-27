@@ -1,5 +1,10 @@
+import type { RegionId } from "./regions.ts";
+
 export type Country = {
   slug: string;
+  region: RegionId;
+  /** Числовий код ISO 3166-1: так країна позначена на карті. */
+  mapId: string;
   name: string;
   currency: string;
   language: string;
