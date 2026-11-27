@@ -1,7 +1,7 @@
 # SeasonWise
 
 Сезонний планувальник подорожей українською: коли їхати, скільки це коштує, як дістатися, візи для українців.
-Працює календар сезонів за погодою для 25 напрямків і пошук «куди поїхати в обраному місяці». Місця, тарифи, дорога, візи й поради є для 5 напрямків (`docs/phase-4/content-status.md`).
+Працює інтерактивна карта з пошуком (світ → регіон → країна → місто), календар сезонів за погодою для 25 напрямків і вибір за місяцем. Місця, тарифи, дорога, візи й поради є для 5 напрямків (`docs/phase-4/content-status.md`).
 
 ## Запуск
 
@@ -23,18 +23,20 @@ cp .env.example .env.local   # заповнити SUPABASE_URL і SUPABASE_SERVI
 | `src/domain/` | Бізнес-правила: типи, вердикт сезону, агрегація клімату, місяці |
 | `src/data/` | Каталог напрямків, кліматичні дані; `catalog.ts` — єдина точка читання |
 | `src/data/content/` | Ручний контент напрямків і візові правила, кожен факт із джерелом |
-| `src/app/` | Сторінки: `/`, `/{country}`, `/{country}/{destination}`, `/api/subscribe`, `/api/report` |
-| `src/components/` | Календар, пошук, місця, маршрути, форми |
-| `src/lib/` | Валідація, захист API, фільтри, зовнішні посилання, клієнт Supabase |
-| `scripts/import-climate.mts` | Імпорт клімату з NASA POWER у `src/data/climate.json` |
+| `src/app/` | Сторінки: `/`, `/{country}`, `/{country}/{destination}`, `/credits`; `/api/subscribe`, `/api/report` |
+| `src/components/` | Обкладинка, пори року, календар, місця, маршрути, форми |
+| `src/components/map/` | Інтерактивна карта: пошук, мітки, список, зум |
+| `src/lib/` | Валідація, захист API, фільтри, математика карти, посилання, клієнт Supabase |
+| `scripts/` | Імпорт клімату, фото та побудова карти |
 | `supabase/migrations/` | Схема БД (поки сторінки читають дані з файлів, не з БД) |
-| `docs/` | Результати фаз плану; точність клімату: `docs/phase-1/climate-accuracy.md` |
+| `docs/` | Результати фаз плану; дизайн: `docs/phase-2/design.md`; точність клімату: `docs/phase-1/climate-accuracy.md` |
 
 ## Додати напрямок
 
 1. Додати запис у `src/data/destinations.ts` (і країну, якщо її ще немає).
-2. `npm run import:climate`
-3. `npm test`
+2. Додати фото у `src/data/photo-sources.json`.
+3. `npm run import:climate && npm run fetch:photos` (для нової країни ще `npm run build:map`)
+4. `npm test`
 
 ## База даних
 
