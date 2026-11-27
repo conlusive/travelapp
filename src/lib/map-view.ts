@@ -70,6 +70,19 @@ export function panBy(view: View, dx: number, dy: number, world: World): View {
   return clampView({ ...view, x: view.x - dx * view.width, y: view.y - dy * view.height }, world);
 }
 
+/** Межі, що охоплюють усі точки з полем навколо; null, якщо точок немає. */
+export function boundsAround(points: { x: number; y: number }[], margin: number): Bounds | null {
+  if (points.length === 0) return null;
+  const xs = points.map((point) => point.x);
+  const ys = points.map((point) => point.y);
+  return [
+    Math.min(...xs) - margin,
+    Math.min(...ys) - margin,
+    Math.max(...xs) + margin,
+    Math.max(...ys) + margin,
+  ];
+}
+
 export function easeInOut(t: number): number {
   return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 }
@@ -95,32 +108,38 @@ const LABEL_HEIGHT = 30;
 const CHARACTER_WIDTH = 8;
 const LABEL_PADDING = 30;
 
+export type LabelSide = "right" | "left";
+
 /**
- * Які підписи показати без накладань. Позиції в пікселях; порядок задає пріоритет.
- * Підпис стоїть праворуч від точки.
+ * Які підписи показати без накладань і з якого боку від точки (спершу праворуч).
+ * Позиції в пікселях; порядок задає пріоритет.
  */
-export function visibleLabels(points: LabelPoint[]): Set<string> {
+export function placeLabels(points: LabelPoint[]): Map<string, LabelSide> {
   const placed: Bounds[] = [];
-  const visible = new Set<string>();
+  const result = new Map<string, LabelSide>();
   const dots: Bounds[] = points.map((p) => [p.left - 8, p.top - 8, p.left + 8, p.top + 8]);
   const overlaps = (a: Bounds, b: Bounds) =>
     a[0] < b[2] && b[0] < a[2] && a[1] < b[3] && b[1] < a[3];
 
   points.forEach((point, index) => {
-    const label: Bounds = [
-      point.left + 10,
-      point.top - LABEL_HEIGHT / 2,
-      point.left + 10 + point.text.length * CHARACTER_WIDTH + LABEL_PADDING,
-      point.top + LABEL_HEIGHT / 2,
-    ];
-    const blocked =
-      placed.some((other) => overlaps(label, other)) ||
-      dots.some((dot, other) => other !== index && overlaps(label, dot));
-    if (!blocked) {
+    const width = point.text.length * CHARACTER_WIDTH + LABEL_PADDING;
+    for (const side of ["right", "left"] as const) {
+      const start = side === "right" ? point.left + 10 : point.left - 10 - width;
+      const label: Bounds = [
+        start,
+        point.top - LABEL_HEIGHT / 2,
+        start + width,
+        point.top + LABEL_HEIGHT / 2,
+      ];
+      const blocked =
+        placed.some((other) => overlaps(label, other)) ||
+        dots.some((dot, other) => other !== index && overlaps(label, dot));
+      if (blocked) continue;
       placed.push(label);
-      visible.add(point.id);
+      result.set(point.id, side);
+      break;
     }
   });
 
-  return visible;
+  return result;
 }

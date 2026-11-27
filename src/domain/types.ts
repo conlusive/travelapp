@@ -10,7 +10,13 @@ export type Country = {
   language: string;
 };
 
-export type DestinationType = "city" | "resort" | "nature";
+export const DESTINATION_TYPE_NAMES = {
+  city: "Місто",
+  resort: "Курорт",
+  nature: "Природа",
+} as const;
+
+export type DestinationType = keyof typeof DESTINATION_TYPE_NAMES;
 
 export type Destination = {
   slug: string;

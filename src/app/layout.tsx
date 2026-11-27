@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Link from "next/link";
+import { Manrope } from "next/font/google";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin", "cyrillic"],
 });
 
@@ -19,16 +20,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="uk" data-scroll-behavior="smooth" className={`${inter.variable} h-full antialiased`}>
+    <html lang="uk" data-scroll-behavior="smooth" className={`${manrope.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
-        <header className="border-b border-border bg-surface">
-          <div className="mx-auto flex w-full max-w-5xl items-center px-4 py-4 sm:px-6">
-            <Link href="/" className="font-bold tracking-wide text-accent uppercase">
-              SeasonWise
-            </Link>
-          </div>
-        </header>
+        <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );

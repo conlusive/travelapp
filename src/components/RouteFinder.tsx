@@ -71,7 +71,7 @@ export function RouteFinder({ routes, destinationName, destinationSearchName }: 
       </div>
 
       {options ? (
-        <ul className="divide-y divide-border rounded-2xl border border-border bg-surface">
+        <ul className="divide-y divide-border rounded-3xl border border-border bg-surface">
           {options.map((option) => (
             <li key={option.text} className="flex flex-col gap-1 p-4">
               <p>{option.text}</p>
@@ -80,7 +80,7 @@ export function RouteFinder({ routes, destinationName, destinationSearchName }: 
           ))}
         </ul>
       ) : (
-        <p className="rounded-2xl border border-dashed border-border p-5 text-sm text-muted">
+        <p className="rounded-3xl border border-dashed border-border p-5 text-sm text-muted">
           Описаного маршруту ще немає. Актуальні варіанти — за посиланням нижче.
         </p>
       )}

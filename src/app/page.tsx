@@ -1,79 +1,65 @@
 import { Suspense } from "react";
-import { ClimateAttribution } from "@/components/ClimateAttribution";
-import {
-  DestinationSearch,
-  DestinationSearchView,
-  type DestinationCard,
-} from "@/components/DestinationSearch";
+import { HeroShowcase } from "@/components/HeroShowcase";
+import { MapExplorer, MapExplorerView } from "@/components/map/MapExplorer";
+import { SeasonStrip } from "@/components/SeasonStrip";
 import { SubscribeForm } from "@/components/SubscribeForm";
-import { getCountry, getSeason, listDestinations, type MonthSeason } from "@/data/catalog";
-import { monthName } from "@/domain/months";
-import { bestMonths } from "@/domain/season";
-import type { Destination } from "@/domain/types";
+import { listMapCountries, listMapRegions, listPlaceCards } from "@/data/explorer";
+import { seasonHighlights } from "@/lib/explore";
 
-function summarize(destination: Destination, season: MonthSeason[]): string {
-  if (destination.climateCaveat) return "Кліматичні дані уточнюємо";
-  const months = bestMonths(season);
-  if (months.length === 0) return "Погода непроста цілий рік";
-  return `Найкраща погода: ${months.map((m) => monthName(m).full.toLowerCase()).join(", ")}`;
-}
-
-function buildCards(): DestinationCard[] {
-  return listDestinations().map((destination) => {
-    const country = getCountry(destination.countrySlug);
-    if (!country) throw new Error(`Unknown country "${destination.countrySlug}"`);
-    const season = getSeason(destination.slug);
-    return {
-      href: `/${country.slug}/${destination.slug}`,
-      name: destination.name,
-      countryName: country.name,
-      summary: summarize(destination, season),
-      months: season.map(({ score, verdict }) => ({ score, verdict })),
-      unreliable: destination.climateCaveat ?? false,
-      searchFields: [destination.name, destination.slug, country.name, country.slug],
-    };
-  });
-}
+// Напрямки з виразними фото для головного екрана.
+const HERO_SLUGS = ["dubrovnik", "ubud", "tokyo", "rome", "cancun"];
 
 export default function Home() {
-  const cards = buildCards();
+  const places = listPlaceCards();
+  const map = { places, countries: listMapCountries(), regions: listMapRegions() };
+  const slides = HERO_SLUGS.map((slug) => {
+    const place = places.find((item) => item.slug === slug);
+    if (!place) throw new Error(`Unknown hero destination "${slug}"`);
+    return place;
+  });
 
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-16 px-4 py-10 sm:px-6 sm:py-16">
-      <section className="flex flex-col gap-6">
-        <h1 className="max-w-3xl text-4xl leading-tight font-bold sm:text-5xl">
-          Куди й коли поїхати
-        </h1>
-        <p className="max-w-2xl text-lg text-muted">
-          Оберіть місяць і дізнайтеся, де буде найкомфортніше, або знайдіть напрямок: сезон, місця,
-          дорога з Києва, Львова чи Варшави та візові умови.
-        </p>
-        {/* До гідратації показуємо повний список: він потрібен і пошуковикам. */}
-        <Suspense
-          fallback={
-            <DestinationSearchView cards={cards} query="" month={null} onChange={undefined} />
-          }
-        >
-          <DestinationSearch cards={cards} />
-        </Suspense>
+    <main className="flex flex-1 flex-col">
+      <HeroShowcase slides={slides} />
+      <SeasonStrip highlights={seasonHighlights(places)} />
+
+      <section id="map" aria-labelledby="map-title" className="bg-ink px-3 pb-16 sm:px-6">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 pt-10 text-white">
+          <div className="flex flex-col gap-2 px-2">
+            <h2 id="map-title" className="text-4xl font-extrabold tracking-tight sm:text-6xl">
+              Куди поїхати?
+            </h2>
+            <p className="max-w-xl text-white/65">
+              Напишіть назву або клацайте по карті: від світу до регіону, країни й міста. Місяць
+              унизу перефарбовує точки за погодою.
+            </p>
+          </div>
+          {/* До гідратації показуємо повний список: він потрібен і пошуковикам. */}
+          <Suspense
+            fallback={
+              <MapExplorerView {...map} selection={{ region: null, country: null }} month={null} />
+            }
+          >
+            <MapExplorer {...map} />
+          </Suspense>
+        </div>
       </section>
 
       <section
-        aria-labelledby="waitlist-title"
-        className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-6"
+        id="subscribe"
+        aria-labelledby="subscribe-title"
+        className="mx-auto w-full max-w-6xl scroll-mt-6 px-4 py-20 sm:px-8"
       >
-        <h2 id="waitlist-title" className="text-2xl font-bold">
-          Отримайте ранній доступ
-        </h2>
-        <p className="max-w-2xl text-muted">
-          Напишемо, коли додамо перевірені ціни й нові напрямки.
-        </p>
-        <SubscribeForm />
+        <div className="flex flex-col gap-5 rounded-[2rem] bg-ink px-6 py-12 text-white sm:px-14 sm:py-16">
+          <h2 id="subscribe-title" className="max-w-xl text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Підпишіться й дізнайтеся першими про нові напрямки
+          </h2>
+          <p className="max-w-xl text-white/65">
+            Напишемо, коли додамо перевірені ціни, готелі та більше міст.
+          </p>
+          <SubscribeForm />
+        </div>
       </section>
-
-      <footer className="border-t border-border pt-6">
-        <ClimateAttribution />
-      </footer>
     </main>
   );
 }

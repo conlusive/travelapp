@@ -1,12 +1,13 @@
 import { describe, expect, it } from "vitest";
 import {
   MIN_VIEW_WIDTH,
+  boundsAround,
   clampView,
   fitBounds,
   interpolateView,
   panBy,
   toPercent,
-  visibleLabels,
+  placeLabels,
   zoomAt,
 } from "./map-view";
 
@@ -79,6 +80,16 @@ describe("interpolateView", () => {
   });
 });
 
+describe("boundsAround", () => {
+  it("wraps all points with a margin", () => {
+    expect(boundsAround([{ x: 10, y: 50 }, { x: 30, y: 20 }], 5)).toEqual([5, 15, 35, 55]);
+  });
+
+  it("returns null without points", () => {
+    expect(boundsAround([], 5)).toBeNull();
+  });
+});
+
 describe("toPercent", () => {
   it("maps view corners to 0 and 100 percent", () => {
     const view = { x: 10, y: 20, width: 100, height: 50 };
@@ -87,16 +98,31 @@ describe("toPercent", () => {
   });
 });
 
-describe("visibleLabels", () => {
+describe("placeLabels", () => {
   const point = (id: string, left: number, top: number) => ({ id, left, top, text: "Місто" });
 
-  it("shows labels that do not collide", () => {
-    expect(visibleLabels([point("a", 0, 0), point("b", 300, 0)])).toEqual(new Set(["a", "b"]));
+  it("puts separate labels on the right", () => {
+    expect(placeLabels([point("a", 0, 0), point("b", 300, 0)])).toEqual(
+      new Map([
+        ["a", "right"],
+        ["b", "right"],
+      ]),
+    );
   });
 
-  it("gives priority to the earlier point when labels overlap", () => {
-    expect(visibleLabels([point("a", 0, 0), point("b", 20, 4)]).has("b")).toBe(true);
-    expect(visibleLabels([point("a", 0, 0), point("b", 20, 4)]).has("a")).toBe(false);
-    expect(visibleLabels([point("a", 0, 0), point("b", -30, 4)])).toEqual(new Set(["a"]));
+  it("moves a label to the left when the right side is taken", () => {
+    // «b» трохи лівіше: праворуч його підпис накрив би точку «a».
+    expect(placeLabels([point("a", 0, 0), point("b", -30, 4)])).toEqual(
+      new Map([
+        ["a", "right"],
+        ["b", "left"],
+      ]),
+    );
+  });
+
+  it("hides a label when both sides are taken, keeping the earlier points", () => {
+    const result = placeLabels([point("a", 0, 0), point("b", -90, 0), point("c", -30, 0)]);
+    expect(result.has("a")).toBe(true);
+    expect(result.has("c")).toBe(false);
   });
 });

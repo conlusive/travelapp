@@ -1,10 +1,8 @@
 // Єдине визначення проєкції: нею будується карта (scripts/build-map.mts) і ставляться точки.
 import { geoNaturalEarth1 } from "d3-geo";
 import type { GeoBox } from "../domain/regions.ts";
+import { MAP_HEIGHT, MAP_WIDTH } from "./map-size.ts";
 import type { Bounds } from "./map-view.ts";
-
-export const MAP_WIDTH = 2000;
-export const MAP_HEIGHT = 1040;
 
 export const mapProjection = geoNaturalEarth1().fitSize([MAP_WIDTH, MAP_HEIGHT], {
   type: "Sphere",

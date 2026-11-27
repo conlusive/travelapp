@@ -33,7 +33,7 @@ export function AttractionList({ attractions, city }: { attractions: Attraction[
         {visible.map((attraction) => (
           <li
             key={attraction.name}
-            className="flex flex-col gap-2 rounded-2xl border border-border bg-surface p-5"
+            className="flex flex-col gap-2 rounded-3xl border border-border bg-surface p-5"
           >
             <div>
               <h3 className="font-semibold">{attraction.name}</h3>

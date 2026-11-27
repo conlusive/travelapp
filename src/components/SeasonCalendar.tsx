@@ -34,7 +34,7 @@ export function SeasonCalendarView({ season, selected, onSelect }: ViewProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5">
+      <div className="rounded-3xl border border-border bg-surface p-4 shadow-sm sm:p-5">
         <ul className="grid grid-cols-6 gap-2 sm:grid-cols-12" aria-label="Календар сезонів">
           {season.map((item) => {
             const month = item.climate.month;
@@ -70,7 +70,7 @@ export function SeasonCalendarView({ season, selected, onSelect }: ViewProps) {
 
       <section
         aria-live="polite"
-        className="rounded-2xl border border-border bg-surface p-5 shadow-sm"
+        className="rounded-3xl border border-border bg-surface p-5 shadow-sm"
       >
         <h3 className="flex flex-wrap items-center gap-3 text-lg font-semibold">
           {monthName(climate.month).full}

@@ -57,10 +57,7 @@ export function SubscribeForm() {
 
   if (status === "success") {
     return (
-      <p
-        role="status"
-        className="rounded-xl border border-accent/30 bg-accent/10 px-5 py-4 text-base font-medium"
-      >
+      <p role="status" className="max-w-xl rounded-full bg-white px-6 py-4 text-base font-bold text-black">
         Дякуємо! Ми напишемо, щойно відкриємо доступ.
       </p>
     );
@@ -68,7 +65,7 @@ export function SubscribeForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="w-full max-w-xl">
-      <div className="flex flex-col gap-3 sm:flex-row">
+      <div className="flex flex-col gap-3 sm:flex-row sm:gap-1 sm:rounded-full sm:bg-white sm:p-1.5">
         <label htmlFor="email" className="sr-only">
           Ваш email
         </label>
@@ -82,7 +79,7 @@ export function SubscribeForm() {
           maxLength={254}
           placeholder="you@example.com"
           aria-describedby="form-hint form-message"
-          className="min-h-12 flex-1 rounded-xl border border-border bg-surface px-4 text-base outline-none focus:border-accent focus:ring-2 focus:ring-accent/30"
+          className="min-h-12 flex-1 rounded-full bg-white px-5 text-base text-black outline-none placeholder:text-black/45 focus-visible:ring-2 focus-visible:ring-black/60"
         />
         {/* Honeypot: прихований від людей і скрінрідерів, боти його заповнюють. */}
         <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
@@ -92,15 +89,15 @@ export function SubscribeForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="min-h-12 rounded-xl bg-accent px-6 text-base font-semibold text-on-accent transition hover:bg-accent-strong disabled:opacity-60"
+          className="min-h-12 cursor-pointer rounded-full border border-white/25 bg-black px-6 text-base font-bold text-white transition hover:bg-neutral-800 disabled:opacity-60"
         >
-          {status === "loading" ? "Надсилаємо…" : "Хочу ранній доступ"}
+          {status === "loading" ? "Надсилаємо…" : "Підписатися"}
         </button>
       </div>
-      <p id="form-hint" className="mt-3 text-sm text-muted">
+      <p id="form-hint" className="mt-3 text-sm text-white/55">
         Лише лист про запуск і кілька оновлень. Без спаму, відписатися можна будь-коли.
       </p>
-      <p id="form-message" role="alert" className="mt-2 min-h-5 text-sm text-danger">
+      <p id="form-message" role="alert" className="mt-2 min-h-5 text-sm text-[#ff9b92]">
         {status === "error" ? message : ""}
       </p>
     </form>

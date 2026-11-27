@@ -44,7 +44,7 @@ export function ReportForm() {
   }
 
   return (
-    <details className="rounded-2xl border border-border bg-surface p-4">
+    <details className="rounded-3xl border border-border bg-surface p-4">
       <summary className="cursor-pointer text-sm font-semibold">Повідомити про неточність</summary>
       {status === "success" ? (
         <p role="status" className="mt-3 text-sm">
@@ -70,7 +70,7 @@ export function ReportForm() {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="min-h-11 cursor-pointer rounded-xl bg-accent px-5 text-sm font-semibold text-on-accent hover:bg-accent-strong disabled:opacity-60"
+            className="min-h-11 cursor-pointer rounded-full bg-accent px-5 text-sm font-semibold text-on-accent hover:bg-accent-strong disabled:opacity-60"
           >
             {status === "loading" ? "Надсилаємо…" : "Надіслати"}
           </button>
