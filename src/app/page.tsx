@@ -1,5 +1,7 @@
-import { Suspense } from "react";
+import { Suspense, type CSSProperties } from "react";
 import { HeroShowcase } from "@/components/HeroShowcase";
+import { AnimatedTitle } from "@/components/motion/AnimatedTitle";
+import { Reveal } from "@/components/motion/Reveal";
 import { MapExplorer, MapExplorerView } from "@/components/map/MapExplorer";
 import { SeasonStrip } from "@/components/SeasonStrip";
 import { SubscribeForm } from "@/components/SubscribeForm";
@@ -25,19 +27,19 @@ export default function Home() {
 
       <section id="map" aria-labelledby="map-title" className="bg-ink px-3 pb-16 sm:px-6">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 pt-10 text-white">
-          <div className="flex flex-col gap-2 px-2">
+          <Reveal className="flex flex-col gap-2 px-2">
             <h2 id="map-title" className="text-4xl font-extrabold tracking-tight sm:text-6xl">
-              Куди поїхати?
+              <AnimatedTitle text="Куди поїхати?" trigger="scroll" />
             </h2>
-            <p className="max-w-xl text-white/65">
-              Напишіть назву або клацайте по карті: від світу до регіону, країни й міста. Місяць
-              унизу перефарбовує точки за погодою.
+            <p className="reveal-fade max-w-xl text-white/65" style={{ "--i": 2 } as CSSProperties}>
+              Напишіть назву або клацайте по карті: від світу до регіону, країни й міста. Оберіть
+              місяць чи пору року, і точки покажуть, де тоді найкраща погода.
             </p>
-          </div>
+          </Reveal>
           {/* До гідратації показуємо повний список: він потрібен і пошуковикам. */}
           <Suspense
             fallback={
-              <MapExplorerView {...map} selection={{ region: null, country: null }} month={null} />
+              <MapExplorerView {...map} selection={{ region: null, country: null }} period={null} />
             }
           >
             <MapExplorer {...map} />
@@ -50,15 +52,17 @@ export default function Home() {
         aria-labelledby="subscribe-title"
         className="mx-auto w-full max-w-6xl scroll-mt-6 px-4 py-20 sm:px-8"
       >
-        <div className="flex flex-col gap-5 rounded-[2rem] bg-ink px-6 py-12 text-white sm:px-14 sm:py-16">
-          <h2 id="subscribe-title" className="max-w-xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Підпишіться й дізнайтеся першими про нові напрямки
-          </h2>
-          <p className="max-w-xl text-white/65">
-            Напишемо, коли додамо перевірені ціни, готелі та більше міст.
-          </p>
-          <SubscribeForm />
-        </div>
+        <Reveal>
+          <div className="reveal-fade flex flex-col gap-5 rounded-[2rem] bg-ink px-6 py-12 text-white sm:px-14 sm:py-16">
+            <h2 id="subscribe-title" className="max-w-xl text-3xl font-extrabold tracking-tight sm:text-4xl">
+              <AnimatedTitle text="Підпишіться й дізнайтеся першими про нові напрямки" trigger="scroll" />
+            </h2>
+            <p className="max-w-xl text-white/65">
+              Напишемо, коли додамо перевірені ціни, готелі та більше міст.
+            </p>
+            <SubscribeForm />
+          </div>
+        </Reveal>
       </section>
     </main>
   );

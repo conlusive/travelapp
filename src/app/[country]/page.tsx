@@ -65,6 +65,7 @@ export default async function CountryPage({ params }: PageProps<"/[country]">) {
             {destinations.map((destination) => (
               <li key={destination.slug}>
                 <PhotoCard
+                  slug={destination.slug}
                   href={`/${country.slug}/${destination.slug}`}
                   title={destination.name}
                   text={summarize(destination, getSeason(destination.slug))}

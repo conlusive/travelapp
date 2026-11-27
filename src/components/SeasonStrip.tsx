@@ -3,7 +3,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import type { PlaceCard } from "@/data/explorer";
-import { monthName } from "@/domain/months";
+import type { SeasonId } from "@/domain/period";
 import type { seasonHighlights } from "@/lib/explore";
 import { replaceSearchParams } from "@/lib/url-state";
 import { ScrollProgress } from "./ScrollProgress";
@@ -13,8 +13,8 @@ type Highlight = ReturnType<typeof seasonHighlights<PlaceCard>>[number];
 // Сходинки, як у відео: сусідні картки зміщені по висоті.
 const OFFSETS = ["1rem", "-1.5rem", "2rem", "-0.5rem"];
 
-function showOnMap(month: number) {
-  replaceSearchParams({ month, region: null, country: null });
+function showOnMap(season: SeasonId) {
+  replaceSearchParams({ season, month: null, region: null, country: null });
   document.getElementById("map")?.scrollIntoView();
 }
 
@@ -34,7 +34,7 @@ export function SeasonStrip({ highlights }: { highlights: Highlight[] }) {
             >
               <button
                 type="button"
-                onClick={() => showOnMap(item.month)}
+                onClick={() => showOnMap(item.id)}
                 className="group flex w-full cursor-pointer flex-col items-center"
               >
                 <span className="relative block aspect-[2/3] w-full overflow-hidden rounded-3xl">
@@ -49,9 +49,11 @@ export function SeasonStrip({ highlights }: { highlights: Highlight[] }) {
                   />
                   <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
                   <span className="absolute inset-x-3 bottom-11 flex flex-col text-center sm:bottom-14">
-                    <span className="text-lg font-extrabold sm:text-xl">{item.name}</span>
+                    <span className="text-lg font-extrabold transition duration-500 group-hover:-translate-y-1 sm:text-xl">
+                      {item.when}
+                    </span>
                     <span className="text-sm text-white/80">
-                      {item.card.name} · {monthName(item.month).full.toLowerCase()}
+                      {item.card.name}
                     </span>
                   </span>
                 </span>

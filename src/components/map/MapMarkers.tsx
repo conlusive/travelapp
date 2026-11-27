@@ -1,6 +1,7 @@
 "use client";
 
 import type { MapRegion, PlaceCard } from "@/data/explorer";
+import { assessPeriod, type Period } from "@/domain/period";
 import type { RegionId } from "@/domain/regions";
 import { VERDICT_LABELS } from "@/domain/season";
 import { placeLabels, toPercent, type View } from "@/lib/map-view";
@@ -51,7 +52,7 @@ export function PlaceMarkers({
   size,
   places,
   matching,
-  month,
+  period,
   active,
   onActivate,
 }: {
@@ -60,7 +61,7 @@ export function PlaceMarkers({
   places: PlaceCard[];
   /** Напрямки поточного вибору й пошуку; решта пригашені. */
   matching: Set<string>;
-  month: number | null;
+  period: Period;
   active: string | null;
   onActivate: (slug: string) => void;
 }) {
@@ -68,11 +69,11 @@ export function PlaceMarkers({
     .map((place) => ({ place, position: toPercent(view, place.x, place.y) }))
     .filter(({ position }) => inside(position));
 
-  // Пріоритет підписів: активний, потім з вибору, потім за оцінкою місяця.
+  // Пріоритет підписів: активний, потім з вибору, потім за оцінкою періоду.
   const priority = (place: PlaceCard) =>
     (place.slug === active ? 1000 : 0) +
     (matching.has(place.slug) ? 500 : 0) +
-    (month === null ? 0 : place.months[month - 1].score);
+    (period ? assessPeriod(place.months, period).score : 0);
 
   const labels = placeLabels(
     positioned
@@ -81,12 +82,12 @@ export function PlaceMarkers({
         id: place.slug,
         left: (position.left / 100) * size.width,
         top: (position.top / 100) * size.height,
-        text: month === null ? place.name : `${place.name} 100`,
+        text: period ? `${place.name} 100` : place.name,
       })),
   );
 
   return positioned.map(({ place, position }) => {
-    const season = month === null || place.unreliable ? null : place.months[month - 1];
+    const season = !period || place.unreliable ? null : assessPeriod(place.months, period);
     const isActive = place.slug === active;
     const dimmed = !matching.has(place.slug);
     return (

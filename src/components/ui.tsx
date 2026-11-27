@@ -1,15 +1,19 @@
 // Спільні елементи сторінок.
 import type { ReactNode } from "react";
 import type { SourcedFact } from "@/domain/content";
+import { AnimatedTitle } from "./motion/AnimatedTitle";
+import { Reveal } from "./motion/Reveal";
 import { SourceLink } from "./SourceLink";
 
 export function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="flex scroll-mt-20 flex-col gap-4">
-      <h2 id={`${id}-title`} className="text-3xl font-extrabold tracking-tight">
-        {title}
-      </h2>
-      {children}
+    <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-20">
+      <Reveal className="flex flex-col gap-4">
+        <h2 id={`${id}-title`} className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <AnimatedTitle text={title} trigger="scroll" />
+        </h2>
+        <div className="reveal-fade flex flex-col gap-4">{children}</div>
+      </Reveal>
     </section>
   );
 }

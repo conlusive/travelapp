@@ -1,3 +1,4 @@
+import { assessPeriod, type Period } from "../domain/period.ts";
 import type { Verdict } from "../domain/season.ts";
 import { matchesQuery } from "./search.ts";
 
@@ -10,26 +11,19 @@ export type FilterableCard = {
   unreliable: boolean;
 };
 
-/** 1–12 або null для відсутнього чи некоректного значення з адреси. */
-export function parseMonth(value: string | null): number | null {
-  if (!value || !/^\d{1,2}$/.test(value)) return null;
-  const month = Number(value);
-  return month >= 1 && month <= 12 ? month : null;
-}
-
-/** Фільтрує за текстом; якщо обрано місяць — сортує від найкращої погоди. */
+/** Фільтрує за текстом; якщо обрано період — сортує від найкращої погоди. */
 export function filterDestinations<T extends FilterableCard>(
   cards: T[],
   query: string,
-  month: number | null,
+  period: Period,
 ): T[] {
   const matching = cards.filter((card) => matchesQuery(query, card.searchFields));
-  if (month === null) return matching;
+  if (!period) return matching;
 
   return matching.toSorted(
     (a, b) =>
       Number(a.unreliable) - Number(b.unreliable) ||
-      b.months[month - 1].score - a.months[month - 1].score ||
+      assessPeriod(b.months, period).score - assessPeriod(a.months, period).score ||
       a.name.localeCompare(b.name, "uk"),
   );
 }

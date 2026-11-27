@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import type { PlaceCard } from "@/data/explorer";
+import { AnimatedTitle } from "./motion/AnimatedTitle";
 import { ScrollProgress } from "./ScrollProgress";
 
 const SLIDE_MS = 6500;
@@ -24,17 +25,26 @@ function useReducedMotion(): boolean {
 const number = (index: number) => String(index + 1).padStart(2, "0");
 
 export function HeroShowcase({ slides }: { slides: PlaceCard[] }) {
-  const [index, setIndex] = useState(0);
+  const [index, setIndexState] = useState(0);
+  // Перший слайд видно одразу (мʼяке «осідання»), інакше браузер вважає, що вмісту ще немає.
+  const [moved, setMoved] = useState(false);
   const [paused, setPaused] = useState(false);
   const [held, setHeld] = useState(false);
   const reducedMotion = useReducedMotion();
   const playing = !paused && !held && !reducedMotion;
   const count = slides.length;
   const slide = slides[index];
+  const setIndex = (next: number | ((current: number) => number)) => {
+    setMoved(true);
+    setIndexState(next);
+  };
 
   useEffect(() => {
     if (!playing) return;
-    const timer = window.setTimeout(() => setIndex((i) => (i + 1) % count), SLIDE_MS);
+    const timer = window.setTimeout(() => {
+      setMoved(true);
+      setIndexState((i) => (i + 1) % count);
+    }, SLIDE_MS);
     return () => window.clearTimeout(timer);
   }, [playing, index, count]);
 
@@ -82,13 +92,17 @@ export function HeroShowcase({ slides }: { slides: PlaceCard[] }) {
           onBlur={() => setHeld(false)}
         >
           <div key={slide.slug} aria-live={playing ? "off" : "polite"} className="flex flex-col items-center">
-            <p className="animate-rise text-sm font-semibold tracking-[0.35em] uppercase [animation-delay:80ms]">
+            <p className={`text-sm font-semibold tracking-[0.35em] uppercase ${moved ? "animate-rise" : "animate-settle"}`}>
               {slide.countryName}
             </p>
-            <p className="mt-3 max-w-full animate-rise text-[clamp(2.75rem,11vw,10rem)] leading-[1.1] font-extrabold tracking-tight text-balance drop-shadow-[0_4px_30px_rgb(0_0_0/0.35)] [animation-delay:160ms]">
-              {slide.name}.
+            <p className="mt-3 max-w-full text-[clamp(2.75rem,11vw,10rem)] leading-[1.1] font-extrabold tracking-tight text-balance drop-shadow-[0_4px_30px_rgb(0_0_0/0.35)]">
+              {moved ? (
+                <AnimatedTitle text={`${slide.name}.`} by="letters" />
+              ) : (
+                <span className="inline-block animate-settle">{slide.name}.</span>
+              )}
             </p>
-            <p className="mt-4 max-w-xl animate-rise text-base font-medium text-white drop-shadow-[0_1px_8px_rgb(0_0_0/0.8)] [animation-delay:300ms] sm:text-lg">
+            <p className={`mt-4 max-w-xl text-base font-medium text-white drop-shadow-[0_1px_8px_rgb(0_0_0/0.8)] sm:text-lg ${moved ? "animate-rise [animation-delay:550ms]" : "animate-settle [animation-delay:150ms]"}`}>
               {slide.summary}
             </p>
           </div>
@@ -175,9 +189,6 @@ export function HeroShowcase({ slides }: { slides: PlaceCard[] }) {
           </ul>
         </div>
 
-        <p className="absolute top-20 right-4 text-[11px] text-white/55 sm:right-8">
-          Фото: {slide.photo.author} · {slide.photo.license}
-        </p>
       </section>
     </ScrollProgress>
   );

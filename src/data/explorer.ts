@@ -20,7 +20,7 @@ export type PlaceCard = ExplorePlace & {
   /** Координати на карті. */
   x: number;
   y: number;
-  photo: { src: string; blur: string; author: string; license: string };
+  photo: { src: string; blur: string };
 };
 
 export type MapCountry = ExploreCountry & { mapId: string; bounds: Bounds };
@@ -44,7 +44,7 @@ export function buildPlaceCard(destination: Destination): PlaceCard {
   if (!country) throw new Error(`Unknown country "${destination.countrySlug}"`);
   const season = getSeason(destination.slug);
   const [x, y] = projectPoint(destination.lng, destination.lat);
-  const { src, blur, author, license } = getPhoto(destination.slug);
+  const { src, blur } = getPhoto(destination.slug);
 
   return {
     slug: destination.slug,
@@ -66,7 +66,7 @@ export function buildPlaceCard(destination: Destination): PlaceCard {
     unreliable: destination.climateCaveat ?? false,
     x,
     y,
-    photo: { src, blur, author, license },
+    photo: { src, blur },
   };
 }
 

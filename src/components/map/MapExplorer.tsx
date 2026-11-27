@@ -5,11 +5,19 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { MapCountry, MapRegion, PlaceCard } from "@/data/explorer";
-import { MONTH_NAMES, monthName } from "@/domain/months";
+import {
+  parsePeriod,
+  periodName,
+  periodParams,
+  seasonOfMonth,
+  type Period,
+  type SeasonId,
+} from "@/domain/period";
 import type { RegionId } from "@/domain/regions";
-import { filterDestinations, parseMonth } from "@/lib/destination-filter";
+import { filterDestinations } from "@/lib/destination-filter";
 import {
   filterBySelection,
+  goodWeatherByMonth,
   parseSelection,
   suggest,
   type Selection,
@@ -17,6 +25,8 @@ import {
 } from "@/lib/explore";
 import { boundsAround, type Bounds } from "@/lib/map-view";
 import { replaceSearchParams } from "@/lib/url-state";
+import { SeasonPicker, type MonthBar } from "../SeasonPicker";
+import { SaveButton } from "../saved/SaveButton";
 import { ChipRow } from "./ChipRow";
 import { PlaceMarkers, RegionMarkers } from "./MapMarkers";
 import { MapSearch } from "./MapSearch";
@@ -33,12 +43,36 @@ const SEARCH_MARGIN = 90;
 
 type Data = { places: PlaceCard[]; countries: MapCountry[]; regions: MapRegion[] };
 
+type Change = Partial<{
+  region: RegionId | null;
+  country: string | null;
+  month: number | null;
+  season: SeasonId | null;
+}>;
+
 type ViewProps = Data & {
   selection: Selection;
-  month: number | null;
+  period: Period;
   /** Відсутній у статичному варіанті до гідратації. */
-  onChange?: (next: Partial<{ region: RegionId | null; country: string | null; month: number | null }>) => void;
+  onChange?: (next: Change) => void;
 };
+
+const SEASON_BARS: Record<SeasonId, string> = {
+  winter: "bg-season-winter",
+  spring: "bg-season-spring",
+  summer: "bg-season-summer",
+  autumn: "bg-season-autumn",
+};
+
+/** Стовпчики фільтра: у якій частці напрямків поточного вибору погода добра. */
+function weatherBars(places: PlaceCard[]): MonthBar[] {
+  return goodWeatherByMonth(places).map(({ good, total }, index) => ({
+    value: total ? (good / total) * 100 : 0,
+    label: total ? String(good) : undefined,
+    color: SEASON_BARS[seasonOfMonth(index + 1)],
+    description: total ? `добра погода в ${good} з ${total} напрямків` : "дані уточнюємо",
+  }));
+}
 
 function targetBounds({ selection, places, countries, regions }: Data & { selection: Selection }): Bounds | null {
   if (selection.country) {
@@ -77,7 +111,7 @@ function useWorldShapes() {
   return { shapes, failed };
 }
 
-export function MapExplorerView({ places, countries, regions, selection, month, onChange }: ViewProps) {
+export function MapExplorerView({ places, countries, regions, selection, period, onChange }: ViewProps) {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
@@ -90,7 +124,7 @@ export function MapExplorerView({ places, countries, regions, selection, month, 
   const results = filterDestinations(
     searching ? places : filterBySelection(places, selection),
     query,
-    month,
+    period,
   );
 
   // Поки користувач пише, карта летить до знайденого; без збігів діє вибір.
@@ -139,6 +173,9 @@ export function MapExplorerView({ places, countries, regions, selection, month, 
   const regionName = regions.find((r) => r.id === selection.region)?.name;
   const countryName = countries.find((c) => c.slug === selection.country)?.name;
   const hoveredName = countries.find((c) => c.slug === hovered)?.name;
+  const periodSummary = period
+    ? `${periodName(period)}: найкращі напрямки зверху`
+    : "Цифра — у скількох напрямках тоді добра погода";
 
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b0d10] text-white lg:grid-cols-[minmax(0,1fr)_22rem]">
@@ -179,7 +216,7 @@ export function MapExplorerView({ places, countries, regions, selection, month, 
                   size={size}
                   places={places}
                   matching={highlighted}
-                  month={month}
+                  period={period}
                   active={active}
                   onActivate={(slug) => {
                     const place = places.find((p) => p.slug === slug)!;
@@ -237,15 +274,20 @@ export function MapExplorerView({ places, countries, regions, selection, month, 
               <span className="flex min-w-0 flex-1 flex-col gap-1">
                 <span className="truncate text-lg font-extrabold">{activePlace.name}</span>
                 <span className="text-xs text-white/60">
-                  {month === null ? activePlace.summary : `${activePlace.countryName}, ${monthName(month).full.toLowerCase()}`}
+                  {period
+                    ? `${activePlace.countryName}, ${periodName(period).toLowerCase()}`
+                    : activePlace.summary}
                 </span>
-                <VerdictBadge place={activePlace} month={month} />
-                <Link
-                  href={destinationHref(activePlace, month)}
-                  className="mt-1 inline-flex min-h-10 items-center self-start rounded-full bg-white px-4 text-sm font-bold text-black"
-                >
-                  Відкрити →
-                </Link>
+                <VerdictBadge place={activePlace} period={period} />
+                <span className="mt-1 flex items-center gap-2">
+                  <Link
+                    href={destinationHref(activePlace, period)}
+                    className="inline-flex min-h-10 items-center rounded-full bg-white px-4 text-sm font-bold text-black transition hover:scale-105"
+                  >
+                    Відкрити →
+                  </Link>
+                  <SaveButton slug={activePlace.slug} name={activePlace.name} className="scale-90" />
+                </span>
               </span>
               <button
                 type="button"
@@ -260,15 +302,14 @@ export function MapExplorerView({ places, countries, regions, selection, month, 
         </div>
 
         <div className="border-t border-white/10 p-3 sm:p-4">
-          <p className="mb-2 text-xs font-bold tracking-widest text-white/50 uppercase">Коли їдете?</p>
-          <ChipRow<number | null>
-            label="Місяць поїздки"
-            selected={month}
-            onSelect={(value) => onChange?.({ month: value })}
-            options={[
-              { value: null, text: "Будь-коли" },
-              ...MONTH_NAMES.map((name, i) => ({ value: i + 1, text: name.full })),
-            ]}
+          <SeasonPicker
+            tone="dark"
+            clearable
+            title="Коли їдете?"
+            summary={periodSummary}
+            bars={weatherBars(filterBySelection(places, selection))}
+            period={period}
+            onChange={(next) => onChange?.(periodParams(next))}
           />
         </div>
       </div>
@@ -299,13 +340,20 @@ export function MapExplorerView({ places, countries, regions, selection, month, 
           </nav>
           <p role="status" className="text-xs text-white/50">
             Напрямків: {results.length}
-            {month !== null && ` · ${monthName(month).full.toLowerCase()}, найкращі зверху`}
+            {period && ` · ${periodName(period).toLowerCase()}, найкращі зверху`}
           </p>
         </div>
         {/* На великих екранах список прокручується в межах висоти карти. */}
         <div className="relative min-h-0 flex-1 overflow-y-auto">
           <div className="lg:absolute lg:inset-0 lg:overflow-y-auto">
-            <ResultsPanel places={results} month={month} active={active} onActivate={setActive} />
+            <ResultsPanel
+              // Нова вибірка чи період — список зʼявляється заново.
+              key={`${selection.region}-${selection.country}-${period ? periodName(period) : ""}`}
+              places={results}
+              period={period}
+              active={active}
+              onActivate={setActive}
+            />
           </div>
         </div>
       </aside>
@@ -313,7 +361,7 @@ export function MapExplorerView({ places, countries, regions, selection, month, 
   );
 }
 
-/** Регіон, країна й місяць живуть в адресі: вибором можна поділитися. */
+/** Регіон, країна й період живуть в адресі: вибором можна поділитися. */
 export function MapExplorer(props: Data) {
   const params = useSearchParams();
   const selection = parseSelection(params.get("region"), params.get("country"), props.countries);
@@ -322,7 +370,7 @@ export function MapExplorer(props: Data) {
     <MapExplorerView
       {...props}
       selection={selection}
-      month={parseMonth(params.get("month"))}
+      period={parsePeriod(params.get("month"), params.get("season"))}
       onChange={replaceSearchParams}
     />
   );

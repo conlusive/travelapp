@@ -17,6 +17,11 @@
   --verdict-meh: #f0c36a;
   --verdict-avoid: #e58f86;
   --on-verdict: #101214;
+  /* Кольори пір року для фільтра на темній карті. */
+  --season-winter: #8ec5ff;
+  --season-spring: #9ee6a8;
+  --season-summer: #ffd166;
+  --season-autumn: #ff9f6e;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,12 +54,51 @@
   --color-verdict-meh: var(--verdict-meh);
   --color-verdict-avoid: var(--verdict-avoid);
   --color-on-verdict: var(--on-verdict);
+  --color-season-winter: var(--season-winter);
+  --color-season-spring: var(--season-spring);
+  --color-season-summer: var(--season-summer);
+  --color-season-autumn: var(--season-autumn);
   --font-sans: var(--font-manrope);
 
   --animate-ken-burns: ken-burns 9s ease-out both;
   --animate-rise: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   --animate-progress: progress linear both;
   --animate-pop: pop 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+  --animate-beat: beat 0.45s ease-out;
+  --animate-swap: swap 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-settle: settle 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  /* Не з нуля прозорості: текст рахується намальованим із першого кадру. */
+  @keyframes settle {
+    from {
+      opacity: 0.2;
+      transform: translateY(0.35em);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes beat {
+    35% {
+      transform: scale(1.35);
+    }
+    65% {
+      transform: scale(0.9);
+    }
+  }
+
+  @keyframes swap {
+    from {
+      opacity: 0;
+      transform: translateY(0.4em);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 
   @keyframes ken-burns {
     from {
@@ -127,6 +171,43 @@ body {
   filter: brightness(calc(0.35 + var(--local) * 0.65));
 }
 
+/* Текст з-під маски (AnimatedTitle). --i задає черговість. */
+@keyframes mask-up {
+  from {
+    transform: translateY(115%) rotate(4deg);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.animate-mask-up {
+  animation: mask-up 0.85s cubic-bezier(0.2, 0.85, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms + 120ms);
+}
+
+/* Поява під час прокручування (Reveal): ховаємо лише після того, як скрипт позначив блок. */
+.reveal-word {
+  transition: transform 0.85s cubic-bezier(0.2, 0.85, 0.2, 1) calc(var(--i, 0) * 70ms);
+}
+
+.reveal-fade {
+  transition:
+    opacity 0.8s ease calc(var(--i, 0) * 90ms),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i, 0) * 90ms);
+}
+
+[data-reveal="hidden"] .reveal-word {
+  transform: translateY(115%) rotate(4deg);
+  transition: none;
+}
+
+[data-reveal="hidden"] .reveal-fade {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -140,5 +221,6 @@ body {
     animation-duration: 0.01ms !important;
     animation-delay: 0ms !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
   }
 }

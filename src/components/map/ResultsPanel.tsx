@@ -3,19 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { PlaceCard } from "@/data/explorer";
+import { assessPeriod, periodQuery, type Period } from "@/domain/period";
 import { VERDICT_LABELS } from "@/domain/season";
+import { SaveButton } from "../saved/SaveButton";
 import { VERDICT_BACKGROUND } from "../verdict-styles";
 
-export const destinationHref = (place: PlaceCard, month: number | null) =>
-  month === null ? place.href : `${place.href}?month=${month}`;
+export const destinationHref = (place: PlaceCard, period: Period) =>
+  `${place.href}${periodQuery(period)}`;
 
-export function VerdictBadge({ place, month }: { place: PlaceCard; month: number | null }) {
-  if (month === null) return null;
+export function VerdictBadge({ place, period }: { place: PlaceCard; period: Period }) {
+  if (!period) return null;
   if (place.unreliable) return <span className="text-xs text-white/55">Дані уточнюємо</span>;
-  const season = place.months[month - 1];
+  const season = assessPeriod(place.months, period);
   return (
     <span
-      className={`self-start rounded-full px-2.5 py-0.5 text-xs font-bold text-on-verdict ${VERDICT_BACKGROUND[season.verdict]}`}
+      className={`self-start rounded-full px-2.5 py-0.5 text-xs font-bold text-on-verdict transition-colors duration-500 ${VERDICT_BACKGROUND[season.verdict]}`}
     >
       {VERDICT_LABELS[season.verdict]} · {season.score}
     </span>
@@ -24,12 +26,12 @@ export function VerdictBadge({ place, month }: { place: PlaceCard; month: number
 
 export function ResultsPanel({
   places,
-  month,
+  period,
   active,
   onActivate,
 }: {
   places: PlaceCard[];
-  month: number | null;
+  period: Period;
   active: string | null;
   onActivate?: (slug: string) => void;
 }) {
@@ -38,14 +40,19 @@ export function ResultsPanel({
   }
   return (
     <ul className="flex flex-col gap-1 p-2">
-      {places.map((place) => (
-        <li key={place.slug}>
+      {places.map((place, index) => (
+        // Елементи зʼявляються по черзі; затримку обмежено, щоб кінець списку не чекав.
+        <li
+          key={place.slug}
+          className="flex animate-swap items-center gap-1"
+          style={{ animationDelay: `${Math.min(index, 8) * 40}ms` }}
+        >
           <Link
-            href={destinationHref(place, month)}
+            href={destinationHref(place, period)}
             onPointerEnter={() => onActivate?.(place.slug)}
             onFocus={() => onActivate?.(place.slug)}
             data-active={active === place.slug}
-            className="group flex items-center gap-3 rounded-2xl p-2 transition hover:bg-white/10 data-[active=true]:bg-white/10"
+            className="group flex min-w-0 flex-1 items-center gap-3 rounded-2xl p-2 transition hover:bg-white/10 data-[active=true]:bg-white/10"
           >
             <span className="relative size-18 shrink-0 overflow-hidden rounded-xl">
               <Image
@@ -61,14 +68,12 @@ export function ResultsPanel({
             <span className="flex min-w-0 flex-col gap-0.5">
               <span className="truncate font-bold">{place.name}</span>
               <span className="truncate text-xs text-white/55">
-                {month === null ? place.summary : place.countryName}
+                {period ? place.countryName : place.summary}
               </span>
-              <VerdictBadge place={place} month={month} />
-            </span>
-            <span aria-hidden="true" className="ml-auto pr-1 text-white/40 transition group-hover:translate-x-1 group-hover:text-white">
-              →
+              <VerdictBadge place={place} period={period} />
             </span>
           </Link>
+          <SaveButton slug={place.slug} name={place.name} className="shrink-0 scale-90" />
         </li>
       ))}
     </ul>

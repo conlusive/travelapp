@@ -1,5 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { formatMonthYear, formatVisitDuration } from "./format";
+import { formatMonthYear, formatTemperature, formatVisitDuration } from "./format";
+
+describe("formatTemperature", () => {
+  it.each([
+    [21.4, "+21 °C"],
+    [-2.6, "-3 °C"],
+    [0.4, "0 °C"],
+    [-0.4, "0 °C"],
+  ])("formats %d", (value, text) => {
+    expect(formatTemperature(value)).toBe(text);
+  });
+});
 
 describe("formatVisitDuration", () => {
   it.each([

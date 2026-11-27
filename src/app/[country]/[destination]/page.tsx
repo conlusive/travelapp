@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { AttractionList } from "@/components/AttractionList";
 import { PhotoHero } from "@/components/PhotoHero";
+import { MoreIdeas, MoreIdeasView } from "@/components/MoreIdeas";
 import { ReportForm } from "@/components/ReportForm";
+import { SaveButton } from "@/components/saved/SaveButton";
 import { RouteFinder } from "@/components/RouteFinder";
 import { SeasonCalendar, SeasonCalendarView } from "@/components/SeasonCalendar";
 import { SourceLink } from "@/components/SourceLink";
@@ -17,6 +19,7 @@ import {
   getSeason,
   listDestinations,
 } from "@/data/catalog";
+import { listPlaceCards } from "@/data/explorer";
 import { getPhoto } from "@/data/photos";
 import { monthName } from "@/domain/months";
 import { bestMonths } from "@/domain/season";
@@ -32,6 +35,7 @@ const SECTIONS = [
   { id: "route", label: "Дорога" },
   { id: "visa", label: "Візи" },
   { id: "tips", label: "Поради" },
+  { id: "more", label: "Ще ідеї" },
 ];
 
 // Усі напрямки відомі на збірці; інші адреси отримують справжній 404.
@@ -70,6 +74,8 @@ export default async function DestinationPage({
   const best = destination.climateCaveat ? [] : bestMonths(season);
   const initialMonth = bestMonths(season, 1)[0] ?? 1;
   const ticketed = content?.attractions.filter((attraction) => attraction.price) ?? [];
+  const places = listPlaceCards();
+  const initialPeriod = { kind: "month", month: initialMonth } as const;
 
   return (
     <>
@@ -100,6 +106,15 @@ export default async function DestinationPage({
           Валюта: {country.currency}.
           {content && ` Перевірено: ${formatMonthYear(content.verifiedAt)}.`}
         </p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <SaveButton slug={destination.slug} name={destination.name} variant="pill" />
+          <Link
+            href={`/saved?compare=${destination.slug}`}
+            className="inline-flex min-h-11 items-center rounded-full border border-white/40 bg-black/40 px-5 text-sm font-bold backdrop-blur transition hover:bg-black/70"
+          >
+            Порівняти
+          </Link>
+        </div>
       </PhotoHero>
 
       <nav
@@ -134,7 +149,7 @@ export default async function DestinationPage({
           </p>
           <Suspense
             fallback={
-              <SeasonCalendarView season={season} selected={initialMonth} />
+              <SeasonCalendarView season={season} period={initialPeriod} />
             }
           >
             {/* key скидає стан при переході між напрямками */}
@@ -228,6 +243,16 @@ export default async function DestinationPage({
 
         <Section id="tips" title="Поради">
           {content ? <FactList facts={content.tips} /> : <Pending>Поради ще збираємо.</Pending>}
+        </Section>
+
+        <Section id="more" title="Ще ідеї">
+          <Suspense
+            fallback={
+              <MoreIdeasView places={places} current={destination.slug} period={initialPeriod} />
+            }
+          >
+            <MoreIdeas places={places} current={destination.slug} initialMonth={initialMonth} />
+          </Suspense>
         </Section>
 
         <ReportForm />

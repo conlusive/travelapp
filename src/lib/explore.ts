@@ -1,4 +1,5 @@
 // Вибір на карті: світ → регіон → країна, пошукові підказки та добірки за порами року.
+import { SEASONS } from "../domain/period.ts";
 import { REGIONS, isRegionId, type RegionId } from "../domain/regions.ts";
 import type { FilterableCard } from "./destination-filter.ts";
 import { filterDestinations } from "./destination-filter.ts";
@@ -102,22 +103,27 @@ export function suggest(
     .map((item) => item.suggestion);
 }
 
-export const SEASONS = [
-  { id: "winter", letter: "К", name: "Взимку", month: 1 },
-  { id: "spring", letter: "О", name: "Навесні", month: 4 },
-  { id: "summer", letter: "Л", name: "Влітку", month: 7 },
-  { id: "autumn", letter: "И", name: "Восени", month: 10 },
-] as const;
+// Літери під картками пір року, як у відео-орієнтирі: разом читаються «КОЛИ».
+const SEASON_LETTERS = ["К", "О", "Л", "И"];
 
-/** Для кожної пори року — найкращий за погодою напрямок, без повторів. */
+/** Для кожної пори року — найкращий за середньою погодою напрямок, без повторів. */
 export function seasonHighlights<T extends FilterableCard>(cards: T[]) {
   const used = new Set<T>();
-  return SEASONS.map((season) => {
-    const card = filterDestinations(cards, "", season.month).find(
+  return SEASONS.map((season, index) => {
+    const card = filterDestinations(cards, "", { kind: "season", season: season.id }).find(
       (item) => !item.unreliable && !used.has(item),
     );
     if (!card) throw new Error(`No destination for ${season.id}`);
     used.add(card);
-    return { ...season, card };
+    return { id: season.id, when: season.when, letter: SEASON_LETTERS[index], card };
   });
+}
+
+/** Для кожного місяця 1–12: у скількох надійних напрямках погода щонайменше добра. */
+export function goodWeatherByMonth(cards: FilterableCard[]): { good: number; total: number }[] {
+  const reliable = cards.filter((card) => !card.unreliable);
+  return Array.from({ length: 12 }, (_, month) => ({
+    good: reliable.filter((card) => ["ideal", "good"].includes(card.months[month].verdict)).length,
+    total: reliable.length,
+  }));
 }
